@@ -1,430 +1,385 @@
 "use strict";
 /*
- *  Масиви: літерали массива, елементи, індексація, довжина
- */
-// Масив - структура даних для зберігання і маніпулювання
-// колекцією індексованих значень. Використовується для зберігання
-// впорядкованих колекцій даних, наприклад, списку курортів, товарів, клієнтів в готелі тощо.
-/*
-
-
-? Створіть масив genres з елементами Jazz і Blues.
-? Додайте «Рок-н-рол» до кінця.
-? Виведіть у консоль перший елемент масиву.
-? Виведіть у консоль останній елемент масиву. Код має працювати для масиву довільної довжини.
-? Видаліть перший елемент та виведіть його в консоль.
-? Вставте «Country» та «Reggy» на початок масиву.
+ * Функціональні висловлювання та оголошення функції.
+ * Параметри, аргументи, повернення, порядок виконання коду.
  */
 
-const genres = ["Jazz", "Bluz"];
+// console.log(showMessage("Hello", "Sofia"));
+// // function declaration
+// function showMessage() {
+//   return Array.from(arguments);
+// }
+//  //agrument
 
-// const genres = ["Jazz", "Blues", "Рок-н-рол", "Country", "Reggy"];
-// genres[4] = "Рок-н-рол";
-// console.log(genres[2]);
-genres.push("Рок-н-рол");
-genres.unshift("Country", "Reggy");
-// console.log(genres.length);
-// console.log(genres[0]);
-// console.log(genres[genres.length - 1]);
-// console.table(genres);
-// genres.shift();
-// genres.pop();
+// function expresion // rest
+// const showMessage = function (...args) {
+//   console.log(args);
+// };
 
-// console.log(genres.push("Рок-н-рол"));
-// console.log(genres.shift());
-// console.log(genres.pop());
-
-// console.log([].shift());
-// console.log(genres);
-// const indexFindEl = genres.indexOf("Jazz"); // Jazz
-// console.log(indexFindEl);
-
-// const newGenres = genres.slice();
-// newGenres.push("Hello");
-// console.table("newGenres", newGenres);
-// console.table("genres", genres);
-/*
- * Передача за посиланням та за значенням
- */
-
-/*
-? Створіть змінну a = 10.
-? Створіть та привласніть змінній b -> змінну a
-? Виведіть в консоль обидві ці змінні
-? Змініть значення змінної a і ще раз виведіть у консоль
-*/
-// const genre = ["Jazz", "Bluz"];
-// const newGenre = genre; // ["Jazz", "Bluz"]
-// console.log(newGenre);
-
-// newGenre.push("hello");
-// console.log(genre);
-// console.log(newGenre);
+// // function expresion // arguments
+// const showMessage = function () {
+//     console.log(arguments);
+//   };
+// showMessage("Hello", "Sofia");
 //
 //
-// const c = [3];
-// const d = c;
-// c[5] = 6;
-// console.log(c, d);
-// console.log(c === d);
+// Послідовність виконання коду
+// console.log("Before func");
 
-// let a = 10;
-// let b = a; //10
+// function consoleMessage(message = "Default message", num = 5, start = 0) {
+//   console.log(start);
+//   for (let i = start; i < num; i++) {
+//     console.log(message + i);
+//   }
+// }
+// console.log("До виклика consoleMessage");
+// consoleMessage("Hello world", 3);
+// console.log("Після виклика consoleMessage");
 
-// console.log("a: ", a); // 10
-// console.log("b: ", b); // 10
+// consoleMessage("I like Java Script!!");
+// consoleMessage("Java Script!!");
 
-// a = 30;
-// b = 20;
-// console.log(a === b);
-// console.log("a: ", a); // 20
-// console.log("b: ", b); // 10
+// const showMessage = function () {
+//   console.log('Hello');
+// };
+
+// showMessage();
+
+// function showMessage() {
+//   console.log('Hello');
+// }
+
+// showMessage();
+
+// function showMessage(username = "Some ures") {
+//   console.log(`Hello ${username}!`);
+// }
+
+// showMessage("Josie Pierce");
+// showMessage("Vera Knight");
+// showMessage("Alan Lamb");
 
 /*
-? Створіть масив arr1 = [1, 2, 3].
-? Створіть та привласніть масиву arr2 -> масив arr1
-? Вибачте в консоль обидва ці масиви
-? Додайте елемент в масив arr1 і ще раз виведете обидва масиви в консоль
+? Напиши функцію add(a, b), яка сумує 2 числа і робить перевірку, 
+? якщо сума чисел менше 100 виводимо "Результат менше 100"
+? інакше повертаємо суму чисел
 */
 
-// const arr1 = [1, 2, 3];
-// const arr2 = arr1; //[1, 2, 3]
+// function add(number1, number2 = 1) {
+//   let result = 0;
+//   if (number1 && number2) {
+//     result = Number(number1 + number2);
+//     if (result < 100) {
+//       return "Результат менше 100";
+//     }
+//   }
+//   return result;
+// }
 
-// console.log("arr1: ", arr1); // [1, 2, 3]
-// console.log("arr2: ", arr2); // [1, 2, 3]
-
-// arr1.push(10);
-
-// console.log("arr1: ", arr1); // [1, 2, 3, 10]
-// console.log("arr2: ", arr2); // [1, 2, 3, 10]
+// console.log(add(100));
 
 /*
- * Перебір масиву циклами for и for...of
+? Напиши функцію calcBMI(weight, height) яка розраховує та повертає 
+? індекс маси тіла людини.
+? Для цього необхідно розділити вагу в кілограмах на квадрат зросту людини.
+? Вага та висота будуть спеціально передані як рядки. 
+? Нецілі числа можуть бути задані у вигляді 24.7 або 24,7,
+? тобто як роздільник дробової частини може бути кома.
+? Індекс маси тіла необхідно округлити до однієї цифри після коми;
+*/
+
+// function calcBMI(weight, height) {
+//   const numberWeight = Number.parseFloat(weight.replace(",", "."));
+//   const numberHeight = Number.parseFloat(height.replace(",", "."));
+
+//   const BMI = numberWeight / Math.pow(numberHeight, 2);
+//   return Number.parseFloat(BMI.toFixed(1));
+// }
+// const mangoBMI = calcBMI("88,3", "1.75");
+// console.log(mangoBMI);
+// const pollyBMI = calcBMI("80,3", "1.95");
+// console.log(pollyBMI);
+
+/*
+ * Патерн раннього повернення.
  */
 
 /*
-? Напиши скрипт для перебору масиву fruits циклом for.
-? Для кожного елемента масиву виведіть у консоль рядок у форматі номер_елемента: значення_елемента.
-? Нумерація елементів має починатися з одиниці.
+? Напиши функцію min(a,b), яка повертає найменше з чисел a та b.
 */
 
-// const fruits = ["🍎", "🍇", "🍑", "🍌", "🍋"];
-
-// for (let i = 0; i < fruits.length; i++) {
-//   console.log(`${i + 1}: ${fruits[i]}`);
-//   //   console.log(i + 1 + ": " + fruits[i]);
-// }
-// for (let i = fruits.length - 1; i >= 0; i -= 1) {
-//   console.log(`${i + 1}: ${fruits[i]}`);
-//   //   console.log(i + 1 + ": " + fruits[i]);
-// }
-/*
-? Напиши скрипт пошуку найменшого числа у масиві.
-? Код має працювати для будь-якого масиву чисел.
-? Використовуйте цикл для вирішення задачі.
-*/
-
-const numbers = [2, 17, 94, 1, -20, -50, 23, 37];
-// let min = numbers[0]; //2
-let min = 0;
-
-// 1 Варіант розв'язання
-// for (let i = 0; i < numbers.length; i += 1) {
-// console.log(numbers[i]);
-//   if (numbers[i] < min) {
-//     min = numbers[i]; //-50
+// function min(a, b) {
+//   if (typeof a !== "number" || typeof b !== "number") {
+//     return "Один із параметрів не число";
 //   }
-// }
-// console.log(Math.min(2, 17, 94, 1, -20, -50, 23, 37));
-// console.log(Math.min(...numbers));
-// console.log(min);
-
-// 2 Варіант розв'язання
-
-// for (const number of numbers) {
-//   //   console.log(number);
-//   if (number < min) {
-//     min = number;
+// 1
+//   if (a < b) {
+//     return a;
+//   } else {
+//     return b;
 //   }
-// }
-
-// console.log(min);
-
-// const genres = ["Jazz", "Blues", "Рок-н-рол", "Country", "Reggy"];
-
-// let longestWord = genres[0];
-// console.log(longestWord);
-// for (const genre of genres) {
-//   if (longestWord.length < genre.length) {
-//     longestWord = genre;
+// 2
+//   if (a < b) {
+//     return a;
 //   }
-// }
-// console.log(longestWord);
-/*
-? У нас є масив із зарплатами працівників, потрібно порахувати загальну суму зарплат
-*/
-
-// const salaries = [200, 450, 600, 150, 300];
-// let total = 0;
-
-// 1 Варіант розв'язання
-// for (let i = 0; i < salaries.length; i += 1) {
-//   // console.log(salaries[i]);
-//   //   total = total + salaries[i];
-
-//   total += salaries[i];
+//   return b;
+// 3
+//   return a < b ? a : b;
+// 4
+//   return a < b && a;
 // }
 
-// 2 Варіант розв'язання
-// for (const salary of salaries) {
-//   //   console.log(salary);
-//   total += salary;
-// }
-// console.log(total);
-// console.log(total);
+// console.log(min(2, "5")); // 2
+// console.log(min(3, -1)); // -1
+// console.log(min(5, 8)); // 1
 
 /*
-? У нас є кілька масивів із зарплатами співробітників з
-? різних відділів, потрібно порахувати загальну суму зарплат
-*/
-
-const managerSalaries = [1000, 1500, 2500, 4000, 5000];
-const developersSalaries = [8000, 15000, 40000];
-// let total = 0;
-// // // 1 Варіант  розв'язання
-// for (const managerSalary of managerSalaries) {
-//   total += managerSalary;
-//   //   total = total + managerSalary;
-// }
-// console.log(total);
-// for (const developerSalary of developersSalaries) {
-//   total += developerSalary;
-// }
-
-// console.log(total);
-
-// 2 Варіант розв'язання
-// const salaries = [];
-// let total = 0;
-// for (const managerSalary of managerSalaries) {
-//   salaries.push(managerSalary);
-// }
-// console.log(salaries);
-// for (const developerSalary of developersSalaries) {
-//   //   console.log(developerSalary);
-//   salaries.push(developerSalary);
-// }
-// console.log(salaries);
-// for (const salary of salaries) {
-//   total += salary;
-// }
-
-// console.log(total);
-
-// 3 Варіант розв'язання
-
-// let allSalaries = [].concat(managerSalaries, developersSalaries);
-// let total = 0;
-// for (const salary of allSalaries) {
-//   total += salary;
-// }
-// console.log(total);
-// console.log(allSalaries);
-// const g = allSalaries;
-
-// console.log(g === allSalaries);
-// console.log(g);
-// console.log(allSalaries);
-
-// console.log(g);
-// console.log(allSalaries);
-
-/*
- * Базові методи: split и join, indexOf и includes, push, slice и splice, concat
- */
-
-/*
-? Напиши скрипт для обчислення площі прямокутника зі сторонами,
-? значення яких зберігаються в змінних значеннях у вигляді рядка.
+? Напиши функцію getRectArea(dimensions) для обчислення площі прямокутника зі сторонами,
+? значення яких будуть передані до параметра dimensions у вигляді рядка.
 ? Значення гарантовано розділені пробілом.
 */
 
-// const values = "8 11";
+// function getRectArea(dimensions) {
+//   const numbers = dimensions.split(" ");
+//   //1
+//   //   const rectArea = Number(numbers[0] * numbers[1]);
 
-// const sidesArr = values.split(" ");
-// // console.log(sidesArr);
-// const area = Number(sidesArr[0]) * Number(sidesArr[1]);
-// // const area = Number(sidesArr[0] * sidesArr[1]);
+//   //2
+//   let rectArea = 1;
+//   for (const number of numbers) {
+//     rectArea *= Number(number);
+//   }
+//   return rectArea;
+// }
 
-// console.log(area);
+// console.log(getRectArea("8 11")); // 88
+// console.log(getRectArea("18 11")); // 198
+// console.log(getRectArea("8 21")); // 168
 
 /*
-? Напиши скрипт, який виводить у консоль ім'я та телефонний номер користувача.
-? У змінних names і phones зберігаються рядки імен та телефонних номерів, розділені комами.
+? Напиши функцію logItems(items), яка отримує масив та використовує цикл for,
+? який для кожного елемента масиву виводитиме в консоль повідомлення
+? у форматі <номер елемента> - <значення елемента>. Нумерація елементів має починатися з першого.
+? Наприклад, для першого елемента масиву ['Mango', 'Poly', 'Ajax'] з індексом 0 буде виведено 1 - Mango,
+? а для індексу 2 виведе 3 – Ajax.
+*/
+
+// function logItems(items) {
+//   for (let i = 0; i < items.length; i++) {
+//     console.log(`${i + 1}: ${items[i]}`);
+//   }
+// }
+
+// logItems(["Mango", "Poly", "Ajax"]);
+// logItems(["🍎", "🍇", "🍑", "🍌", "🍋"]);
+
+/*
+ * Scope
+ */
+
+// let total = 100;
+// let count = 100;
+
+// const str = "Global scope";
+
+// addNumbers(
+//   "d",
+//   "a",
+//   "g",
+//   1,
+//   2,
+//   6,
+//   4,
+//   7,
+//   8,
+//   9,
+//   5,
+//   1,
+//   5,
+//   14,
+//   15,
+//   48,
+//   79,
+//   "d",
+//   "a",
+//   "g"
+// );
+
+// function addNumbers() {
+//   const str = "Local scope";
+
+//   let total = 0;
+//   let count = 0;
+
+//   for (const numbr of arguments) {
+//     if (typeof numbr !== "number") {
+//       continue;
+//     }
+
+//     total += numbr;
+//     count += 1;
+//   }
+//   console.log(total / count);
+// }
+
+/*
+ * Порядок виконання коду
+ */
+
+// function task1() {
+//   console.log("before task 2");
+//   task2();
+//   console.log("after task 2");
+//   console.log("Completed task 1");
+// }
+// function task2() {
+//   console.log("before task 3");
+//   task3();
+//   console.log("after task 3");
+//   console.log("Completed task 2");
+// }
+// function task3() {
+//   console.log("Completed task 3");
+// }
+// console.log("before task 1");
+// task1();
+// console.log("after task 1");
+//
+//
+// example 2
+// function foo() {
+//   console.log("foo - start");
+//   console.log("foo - 1");
+//   baz();
+//   console.log("Code back 232");
+//   bar();
+//   console.log("Code back 234");
+//   console.log("foo- end");
+// }
+// function baz() {
+//   console.log("baz - start");
+//   console.log("baz - 2");
+//   console.log("baz - end");
+// }
+// function bar() {
+//   console.log("bar - start");
+//   console.log("bar-3");
+//   console.log("bar - end");
+// }
+// foo();
+
+/*
+? Напиши функцію printContactsInfo(names, phones) яка виводить у консоль ім'я та телефонний номер користувача.
+? У параметри names і phones будуть передані рядки імен та телефонних номерів, розділені комами.
 ? Порядковий номер імен та телефонів у рядках вказують на відповідність.
 ? Кількість імен та телефонів гарантовано однакова.
 */
 
-// const names = "Jacob, William, Solomon, Artemis";
-// const phones = "89001234567, 89001112233, 890055566377, 890055566300";
-
-// const namesArr = names.split(", ");
-// const phonesArr = phones.split(", ");
-
-// for (let i = 0; i < namesArr.length; i += 1) {
-//   //   console.log(namesArr[i]);
-//   //   console.log(phonesArr[i]);
-//   //   console.log(namesArr[i] + ":" + phonesArr[i]);
-//   console.log(`${namesArr[i]}: ${phonesArr[i]}`);
-// }
-
-/*
-? Напиши скрипт, який «розвертає» рядок (зворотний порядок букв)
-? та виводить її в консоль.
-*/
-
-// 1 Варіант розв'язання
-const string = "Welcome to the future!";
-// console.log(string);
-// console.log(string.reverse());
-// console.log(String.prototype);
-// const charsArr = string.split("");
-// console.log(charsArr);
-// const charsArrReverse = charsArr.reverse();
-// console.log(charsArrReverse);
-// console.log(charsArrReverse.join(""));
-
-// let reverseString = "";
-
-// for (let i = 0; i < string.length; i += 1) {
-//   // console.log(string[string.length - 1 - i]);
-//   //   console.log(string.length - 1 - i);
-//   reverseString += string[string.length - 1 - i];
-// }
-// console.log(reverseString);
-// let reverseString = "";
-
-// for (let i = string.length - 1; i >= 0; i -= 1) {
-//   reverseString += string[i];
-// }
-// console.log(reverseString);
-// console.log(reverseCharsArr.join(""));
-
-// 2 Варіант розв'язання
-// const string = "Welcome to the future!";
-// let reverseArr = [];
-
-// for (let i = string.length - 1; i >= 0; i -= 1) {
-//   reverseArr.push(string[i]);
-// }
-
-// console.log(reverseArr.join(""));
-
-// const array = [7, 7, 7, 5, 5, 5];
-// console.log(arr.reverse());
-// for (let i = 0; i < array.length / 2; i += 1) {
-// let temp = array[i];
-// array[i] += array[array.length - 1 - i];
-// // array[i] = array[array.length - 1 - i];
-// array[array.length - 1 - i] = array[i] - array[array.length - 1 - i];
-// array[i] -= array[array.length - 1 - i];
-// console.log("index i", i);
-// console.log("array[i]", array[i]);
-// console.log("array[array.length - 1 - i]", array[array.length - 1 - i]);
-// console.log("array.length - 1 - i", array.length - 1 - i);
-// console.log("-------------------------");
-// array[i] = array[array.length - 1 - i];
-// array[array.length - 1 - i] = temp;
-// }
-// console.log(array);
-/*
-? У нас є масив співробітників, відсортуйте його, щоб співробітники не повторювалися
-*/
-
-const employees = ["Dennis", "Dennis", "Shaw", "Watkins", "Watkins", "Ray"];
-// console.log(employees);
-const filteredEmployees = [];
-// console.log(employees.indexOf("Dennis"));
-// // 0 === 0
-// // 1 === 1
-// // 2 === 2
-// // 3 === 3
-// // 1 === 4
-// // 3 === 5
-
-// for (let i = 0; i < employees.length; i++) {
-//   // console.log(employees[i]);
-//   // console.log(employees.indexOf(employees[i]));
-//   console.log(
-//     `indexOf(${employees[i]})`,
-//     employees.indexOf(employees[i]),
-//     `index ${employees[i]}`,
-//     i
-//   );
-//   console.log("indexOf === index", employees.indexOf(employees[i]) === i);
-//   //   console.log("-----------------------------");
-//   // console.log(`index ${employees[i]}`, i);
-//   if (employees.indexOf(employees[i]) === i) {
-//     filteredEmployees.push(employees[i]);
-//   }
-// }
-// console.log(filteredEmployees);
-// for (let i = 0; i < employees.length; i += 1) {
-//   if (employees.indexOf(employees[i]) === i) {
-//     filteredEmployees.push(employees[i]);
+// function printContactsInfo(names, phones) {
+//   const namesArr = names.split(",");
+//   const phonesArr = phones.split(",");
+//   for (let i = 0; i < phonesArr.length; i += 1) {
+//     console.log(`${namesArr[i]}: ${phonesArr[i]}`);
 //   }
 // }
 
-// for (let i = 0; i < employees.length; i += 1) {
-//   if (employees.indexOf(employees[i]) !== i) {
-//     employees.splice(i, 1);
-//   }
-// }
-// console.table(employees);
-// const elToUpdate = employees.indexOf("Ray");
-// employees.splice(elToUpdate, 1, "HELLO");
-// console.table(employees);
-// //? Співробітник Shaw звільнився, видаліть його з масиву
-// const index = employees.indexOf("Shaw");
-// employees.splice(index, 1);
-// console.log(employees);
-// const indexOfRemovedElement = filteredEmployees.indexOf('Shaw');
-// filteredEmployees.splice(indexOfRemovedElement, 1);
-
-// console.log(filteredEmployees);
-
-// //? Додати нового співробітника Thornton, перед Watkins;
-
-// const indexOfWatkins = employees.indexOf("Watkins");
-
-// employees.splice(indexOfWatkins, 0, "Thornton");
-// console.log(employees);
-// const indexOfRay = employees.indexOf("Ray");
-// employees.splice(indexOfRay, 2, "Pango");
-// console.log(employees);
-// slug
-// const title = 'Title 1'.split(' ').join('-'); // Title-1
-// console.log(title);
-
-//янесугусеня
-// const str = "Де помити мопед";
-// const str = "І була пані на палубІ!!!";
-
-// const str = "я несу гусеня!";
-// const newString = str.split("");
-// newString.splice(0, 1, str[0].toUpperCase());
-// console.log(newString.join(""));
-// const strUpdateWithoutSpase = strUpdate.replaceAll(" ", "");
-// // console.log(strUpdateWithoutSpase);
-// const strUpdateWithoutSpaseToArray = strUpdateWithoutSpase.split("");
-// const strUpdateWithoutSpaseToArrayReverse =
-//   strUpdateWithoutSpaseToArray.reverse();
-// const strUpdateWithoutSpaseToArrayReverseToString =
-//   strUpdateWithoutSpaseToArrayReverse.join("");
-// console.log(
-//   strUpdateWithoutSpaseToArrayReverseToString === strUpdateWithoutSpase
+// printContactsInfo(
+//   "Jacob,William,Solomon,Artemis",
+//   "89001234567,89001112233,890055566377,890055566300"
 // );
-// console.log(strUpdateWithoutSpaseToArrayReverseToString);
-// const strUpdate = str.toLowerCase().replaceAll(" ", "");
-// const strReversed = strUpdate.split("").reverse().join("");
-// console.log(strUpdate === strReversed);
+
+// printContactsInfo(
+//   "Vera,Carr,Violet,Sherman",
+//   "89001234567,89001112233,890055566377,890055566300"
+// );
+
+/*
+? Напиши функцію findLargestNumber(numbers), яка шукає найбільше число в масиві.
+*/
+
+// function findLargestNumber(numbers) {
+//   let largestNumber = numbers[0];
+
+//   for (const number of numbers) {
+//     // if (number > largestNumber) {
+//     //   largestNumber = number;
+//     // }
+//     // if (number < largestNumber) {
+//     //   continue;
+//     // }
+//     // largestNumber = number;
+//     largestNumber = number > largestNumber ? number : largestNumber;
+//   }
+//   return largestNumber;
+// }
+
+// console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
+// console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
+
+/*
+ * Псевдомасив arguments
+ */
+/*
+? Напишіть функцію calcAverage() яка приймає довільну кількість аргументів 
+? і повертає їхнє середнє значення.
+? Усі аругменти будуть лише числами.
+*/
+// function calcAverage(...numbers) {
+//   let totalSum = 0;
+
+//   for (const number of numbers) {
+//     totalSum += number;
+//   }
+//   return totalSum / numbers.length;
+// }
+
+// console.log(calcAverage(1, 2, 3, 4)); // 2.5
+// console.log(calcAverage(14, 8, 2)); // 8
+// console.log(calcAverage(27, 43, 2, 8, 36)); // 23.2
+
+/*
+? Напишіть функції для роботи з колекцією навчальних курсів courses:
+? addCourse(name) - додає курс до кінця колекції
+? removeCourse(name) - видаляє курс із колекції
+? updateCourse(oldName, newName) – змінює ім'я на нове
+*/
+const courses = ["HTML", "CSS", "JavaScript", "React", "PostgreSQL"];
+
+function getCourses(data) {
+  //   console.table(data);
+  return data;
+}
+function addCourse(course) {
+  if (!course) {
+    return;
+  }
+  const coursesArr = getCourses(courses);
+  coursesArr.push(course);
+}
+
+function removeCourse(name) {
+  const coursesArr = getCourses(courses);
+  const courseToRemove = coursesArr.indexOf(name);
+
+  if (courseToRemove !== -1) {
+    coursesArr.splice(courseToRemove, 1);
+  }
+
+  return coursesArr;
+}
+function updateCourse(oldName, newName) {
+  const coursesArr = getCourses(courses);
+  const courseToUpdate = coursesArr.indexOf(oldName);
+  coursesArr.splice(courseToUpdate, 1, newName);
+
+  return coursesArr;
+}
+
+addCourse("Express");
+addCourse("React");
+removeCourse("CSS");
+removeCourse("Linux");
+updateCourse("HTML", "Vue");
+updateCourse("Linux", "Windows");
+
+console.table(getCourses(courses));
