@@ -1,130 +1,145 @@
-/*
- * Створення об'єкта (конструктор, літерал).
- * Властивості, ключі (ім'я) та значення
- */
-
-// const user = {};
-// console.log(user);
-
-// const user = new Object()
-// const user = Object.create()
-
-// Сутність фільм (назва, опис, рейтинг, акторський склад, вікове обмеження)
-const film = {
-  title: "Matrix",
-  description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, nemo iusto! Et doloribus praesentium laboriosam dolorem veritatis, magnam atque amet!",
-  rating: 4,
-  actors: ["Aiden", "Mason", "Jimmy"],
-  isAdult: true,
-  location: {
-    country: "Jamaica",
-    city: "Ocho Rios",
-  },
-  hello_world: 5,
-};
-// const property = "title";
-// console.log(film.title);
-// console.log(film["title"]);
-// console.log(film.property);
-// console.log(film[property]);
-// film.example = "Hello";
-// film.isAdult = false;
-// film.actors.push("Hello");
+"use strict";
 
 /*
- * Доступ до властивостей(obj.key, obj[key]).
- * Додавання та зміна властивостей
+ * Операція spread як заміна concat та slice
  */
 
-// film["preview"] = "./images/img.jpg";
-// film.preview = "./images/img.jpg";
+// //*  Копія масива
+// const numbers = [1, 2, 3, 4, 5];
+// // const numbers2 = numbers.slice();
+// // const numbers2 = [].concat(numbers);
+// const numbers2 = [...numbers];
 
-// film.isAdult = false;
-// film["isAdult"] = false;
+// // console.log(numbers2);
 
-// console.log(film["hello world"]);
+// console.log("numbers: ", numbers);
+// console.log("numbers2: ", numbers2);
+// console.log(numbers === numbers2);
+
+// numbers2[0] = 10;
+
+// console.log("numbers: ", numbers);
+// console.log("numbers2: ", numbers2);
+
+//* Об'єднання масивів
+// const numbers = [1, 2, 3, 4, 5];
+// const numbers2 = [10, 9, 8, 7];
+
+// const allNumbers = numbers2.concat(numbers);
+
+// const allNumbers = [...numbers2, 4, 5, ...numbers];
+
+// console.log(allNumbers);
+
+//* Розпилення масиву у функцію
+// const numbers = [1, 2, 3, 4, 5];
+
+// console.log(Math.max(...numbers));
+// console.log(Math.min(...numbers));
+
+// const str = "hello";
+// console.log(...str);
 /*
- *Короткий запис властивостей
+ * Операція spread як заміна Object.assign({}, ...sources)
  */
 
-// const username = "Oleksii";
-// const email = "test@gmail.com";
+// const o1 = { a: 1 };
+// const o2 = { b: 2 };
+// const o3 = { c: 3 };
 
-// const signupData = {
-//   username: username,
-//   email: email,
-// };
-
-// const signupData = {
-//   username,
-//   email,
-// };
-// console.log(signupData);
-
-// const name = prompt("Введіть ваше ім'я");
-// const email = prompt("Ваш email");
+// // Object.assign(o1, o2, o3);
+// // const obj = Object.assign(o1, o2, o3);
+// const obj = { ...o1, ...o2, ...o3 };
+// // console.log(obj); // { a: 1, b: 2, c: 3 }
+// // console.log(o1); // { a: 1, b: 2, c: 3 }, изменился и сам целевой объект.
+// // console.log(obj === o1);
 
 // const user = {
-//   name,
-//   email,
+//   username: "Sofia",
+//   password: 1111,
 // };
+// console.log(user);
+// Object.assign(user, { password: 2222 });
 
 // console.log(user);
 
-// const f = {};
-// const d = {};
-// const a = {
-//   b: 1,
-//   c: 2,
+// const animal = {
+//   legs: 4,
 // };
-// a[f] = 3;
-// a[d] = 4;
-// console.log(a);
+
+// const cat = Object.create(animal);
+// cat.name = "Kiwi";
+// console.log(cat);
+// // const newCat = _.cloneDeep(cat);
+// const newCat = structuredClone(cat);
+// // const newCat = Object.assign(cat);
+// // const newCat2 = { ...cat };
+// console.log(newCat);
+// console.log(newCat2);
+
+// const user = {
+//   firstName: "Jonathan",
+//   lastName: "Barnett",
+//   age: 30,
+// };
+
+// const user2 = { ...user };
+
+// console.log("user: ", user);
+// console.log("user2: ", user2);
+// // console.log(user === user2);
+
+// user2.firstName = "Birdie";
+// console.log("---------------------");
+// console.log("user: ", user);
+// console.log("user2: ", user2);
+
+//* Розпилення складних типів
+
+// const user = {
+//   firstName: "Jonathan",
+//   lastName: "Barnett",
+//   age: 30,
+//   someArr: [1, 2, 3, 4],
+// };
+
+//  Поверхневе копіювання
+// const user2 = Object.assign(user);
+// const user2 = { ...user };
+//
+/// Глибоке копіювання
+// const user2 = JSON.parse(JSON.stringify(user));
+// const user2 = structuredClone(user);
+//
+//
+// console.log('user: ', user);
+// console.log('user2: ', user2);
+// console.log(user === user2);
+// user.someArr.push(10);
+
+// console.log("user: ", user);
+// console.log("user2: ", user2);
+
 /*
- * Посилальний тип
+ * Операція rest
  */
-// Примітивні типи даних
-// let a = 5;
-// let b = a;
 
-// a = 20;
-// console.log(a, b);
+//? Напишіть функцію sum, яка додає довільну кількість
+//? аргументів, які більше вказаного числа;
 
-// const a = { a: 1 };
-// const b = { a: 1 };
+const sum = function (...elements) {
+  let total = 0;
+  for (const el of elements) {
+    if (typeof el === "number" && !Number.isNaN(el)) {
+      total += el;
+    }
+  }
+  return total;
+};
 
-// console.log(a == b);
-
-// const obj = {
-//   a: 1,
-//   b: 2,
-// };
-
-// const obj2 = obj;
-
-// // console.log('obj: ', obj);
-// // console.log('obj2: ', obj2);
-// console.log(obj === obj2);
-
-// obj2.c = 5;
-
-// console.log("obj: ", obj);
-// console.log("obj2: ", obj2);
-// console.log(obj === obj2);
-
-/*
- *Все у цьому світі об'єкти
- */
-// const arr = [1, 2, 3, 4];
-
-// const obj = {
-//   0: 1,
-//   1: 2,
-//   2: 3,
-//   3: 4,
-//   length: 4,
-// };
-
-// console.log(Array.isArray(arr));
-// console.log(Array.isArray(obj));
+const numbers = [1, 2, 3, 4];
+const result = sum(5, 6, 4, NaN, 14, 85, 2, 3, "df", "df", "dfs", NaN);
+console.log(result);
+console.log(sum(...numbers));
+console.log(sum(10, 20, 30));
+// console.log(typeof NaN);

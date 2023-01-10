@@ -1,298 +1,379 @@
-const filmoteka = [
+"use strict";
+
+const people = [
   {
-    id: 1,
-    title: "Duna",
-    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    rating: 10,
-    actors: [
-      "Amelia Gibson",
-      "Cameron Clayton",
-      "Viola Vasquez",
-      "Lula Collins",
-      "Victor Nichols",
-    ],
-    adult: false,
-    image: "https://via.placeholder.com/640/480",
+    name: "Alex",
+    know: ["Alex", "Jhon"],
   },
   {
-    id: 2,
-    title: "Venom",
-    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    rating: 8,
-    actors: [
-      "Inez Greer",
-      "Barry Curtis",
-      "Blanche Rios",
-      "Glen Perry",
-      "Logan Powers",
-    ],
-    adult: true,
-    image: "https://via.placeholder.com/640/480",
+    name: "Eva",
+    know: ["Alex", "Jhon"],
   },
   {
-    id: 3,
-    title: "Luca",
-    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    rating: 9,
-    actors: [
-      "Marguerite Gibbs",
-      "Lora Alvarez",
-      "Jorge Simpson",
-      "Thomas Hall",
-      "Darrell Hunter",
-    ],
-    adult: false,
+    name: "Ivan",
+    know: ["Jhon", "Eva"],
   },
   {
-    id: 4,
-    title: "Free Guy",
-    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    rating: 6,
-    actors: [
-      "Calvin Andrews",
-      "Mamie Myers",
-      "Madge Townsend",
-      "Ralph Kim",
-      "Jorge Reese",
-    ],
-    adult: false,
-    image: "https://via.placeholder.com/640/480",
-  },
-  {
-    id: 5,
-    title: "Saw",
-    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-    rating: 7,
-    actors: [
-      "Adele Marsh",
-      "Melvin Burgess",
-      "Jesus Reese",
-      "Harriet Moreno",
-      "Curtis Cox",
-    ],
-    adult: true,
+    name: "Jhon",
+    know: [],
   },
 ];
+//нарцис  'Jhon'
 
-//? Напишіть функцію getAllTitlesOfFilms(films),
-//? яка повертає масив з усіма назвами фільмів.
-const getAllTitlesOfFilms = function (films) {
-  const titles = [];
-  for (const { title } of films) {
-    // const { title } = film;
-    // console.log(title);
-    // console.log(film.title)
-    // console.log(film);
-    // console.log(film.title);
-    // titles.push(film.title);
-    titles.push(title);
-  }
-  return titles;
-};
-console.log(getAllTitlesOfFilms(filmoteka));
-
-//? Напишіть функцію findFilmByName(films, filmTitle),
-//? яка шукає фільм за назвою.
-const findFilmByName = function (films, filmTitle) {
-  //   console.log(filmTitle);
-  for (const film of films) {
-    const { title } = film;
-    // if (film.title === filmTitle) {
-    //   return film;
-    // }
-    if (film.title.includes(filmTitle)) {
-      return film;
-    }
-  }
-  return "No film!!!";
-};
-// const result = findFilmByName(filmoteka, "Venome");
-// console.log(result);
-
-console.log(findFilmByName(filmoteka, "Duna"));
-
-//? Напишіть функцію getAdultFilms(films),
-//? яка повертає масив усіх дорослих фільмів.
-const getAdultFilms = function (films) {
-  const adultFilms = [];
-  for (const film of films) {
-    if (film.adult) {
-      adultFilms.push(film);
-    }
-  }
-  return adultFilms;
-};
-console.log(getAdultFilms(filmoteka));
-//? Напишіть функцію getNotAdultFilms(films),
-//? яка повертає масив усіх фільмів без обмежень.
-const getNotAdultFilms = function (films) {
-  const nonAdultFilms = [];
-
-  for (const film of films) {
-    if (!film.adult) {
-      nonAdultFilms.push(film);
-    }
-  }
-  return nonAdultFilms;
-};
-
-console.log(getNotAdultFilms(filmoteka));
-const getImagesFilms = function (films) {
-  const imagesFilms = [];
-};
-
-// console.log(getAllTitlesOfFilms(filmoteka));
-// console.log(findFilmByName(filmoteka, 'Stars wars'));
-// console.log(findFilmByName(filmoteka, 'Duna'));
-// console.log(getAllTitlesOfFilms(filmoteka));
-// console.log(findFilmByName(filmoteka, 'Venom'));
-// console.log(getAdultFilms(filmoteka));
-// console.log(getNotAdultFilms(filmoteka));
-// function add(...args) {}
-// add(1, 4, 6, 7);
-// const animal = { legs: 4, name: 'Mando' };
-// const dog = { ...animal, name: 'Kiwi' };
-// console.log(dog.hasOwnProperty('legs'));
-// console.log(dog);
-// console.log(dog);
-// getImagesFilms(filmoteka);
-
-// const numbers = [3, 5, 7, 8, 8, 98];
-
-// console.log(Math.max(4, 6, 8, 12));
-// console.log(...numbers);
-// console.log(Math.max(...numbers));
-// console.log(Math.min(...numbers));
-// const someFilm = {
-//   id: 6,
-//   title: 'Saw',
-//   description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
-//   rating: 7,
-//   actors: [
-//     'Adele Marsh',
-//     'Melvin Burgess',
-//     'Jesus Reese',
-//     'Harriet Moreno',
-//     'Curtis Cox',
-//   ],
-//   adult: true,
-// };
-// const data = {
-//   totalFilms: 5,
-//   filmoteka: [
-//     {
-//       id: 1,
-//       title: 'Duna',
-//       description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
-//       rating: 10,
-//       actors: [
-//         'Amelia Gibson',
-//         'Cameron Clayton',
-//         'Viola Vasquez',
-//         'Lula Collins',
-//         'Victor Nichols',
-//       ],
-//       adult: false,
-//       image: 'https://via.placeholder.com/640/480',
-//     },
-//     {
-//       id: 2,
-//       title: 'Venom',
-//       description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
-//       rating: 8,
-//       actors: [
-//         'Inez Greer',
-//         'Barry Curtis',
-//         'Blanche Rios',
-//         'Glen Perry',
-//         'Logan Powers',
-//       ],
-//       adult: true,
-//       image: 'https://via.placeholder.com/640/480',
-//     },
-//     {
-//       id: 3,
-//       title: 'Luca',
-//       description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
-//       rating: 9,
-//       actors: [
-//         'Marguerite Gibbs',
-//         'Lora Alvarez',
-//         'Jorge Simpson',
-//         'Thomas Hall',
-//         'Darrell Hunter',
-//       ],
-//       adult: false,
-//     },
-//     {
-//       id: 4,
-//       title: 'Free Guy',
-//       description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
-//       rating: 6,
-//       actors: [
-//         'Calvin Andrews',
-//         'Mamie Myers',
-//         'Madge Townsend',
-//         'Ralph Kim',
-//         'Jorge Reese',
-//       ],
-//       adult: false,
-//       image: 'https://via.placeholder.com/640/480',
-//     },
-//     {
-//       id: 5,
-//       title: 'Saw',
-//       description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
-//       rating: 7,
-//       actors: [
-//         'Adele Marsh',
-//         'Melvin Burgess',
-//         'Jesus Reese',
-//         'Harriet Moreno',
-//         'Curtis Cox',
-//       ],
-//       adult: true,
-//     },
-//   ],
-// };
-// const { filmoteka: films = [] } = data;
-// console.log(films.push(someFilm));
-// console.log(films);
-
-const user = {
-  name: "Jacques Gluke",
-  tag: "jgluke",
-  stats: {
-    followers: 5603,
-    views: 4827,
+const people2 = [
+  {
+    name: "Alex",
+    know: ["Alex", "Jhon"],
   },
-};
+  {
+    name: "Jhon",
+    know: [],
+  },
+  {
+    name: "Eva",
+    know: [],
+  },
+  {
+    name: "Ivan",
+    know: ["Jhon", "Eva"],
+  },
+];
+//немає нарциса'
 
-// const {
-//   name: userName,
-//   tag,
-//   stats: { followers, views, likes: userLikes = 0 },
-// } = user;
-// const {
-//   name: userName,
-//   tag,
-//   stats: { followers },
-// } = user;
-// console.log(userName);
-// console.log(tag);
-// console.log(followers);
-// const {
-//   name,
-//   tag,
-//   stats
-// } = user;
+const people3 = [
+  {
+    name: "Alex",
+    know: ["Alex", "Eva"],
+  },
+  {
+    name: "Jhon",
+    know: [],
+  },
+  {
+    name: "Eva",
+    know: ["Alex", "Jhon"],
+  },
+  {
+    name: "Ivan",
+    know: ["Jhon", "Eva"],
+  },
+];
+//немає нарциса
 
-// console.log(userName); // Jacques Gluke
-// console.log(tag); // jgluke
-// // console.log(stats); // jgluke
-// console.log(followers);
-// console.log(views);
-// console.log(userLikes);
-// console.log(followers); // 5603
-// console.log(userViews); // 4827
-// console.log(userLikes); // 1308
+const people4 = [
+  {
+    name: "Alex",
+    know: ["Alex", "Jhon"],
+  },
+  {
+    name: "Jhon",
+    know: [],
+  },
+  {
+    name: "Eva",
+    know: ["Alex", "Jhon"],
+  },
+  {
+    name: "Ivan",
+    know: ["Jhon", "Eva"],
+  },
+];
+//немає нарциса'
+
+//Нарциса знають всі, нарцис незнає нікого
+
+function findNar(peoples) {
+  const allNames = [];
+  const obj = {};
+  let narName = "";
+
+  for (const { name, know } of peoples) {
+    allNames.push(...know);
+    if (know.length === 0) {
+      narName = name;
+    }
+  }
+
+  for (const name of allNames) {
+    if (obj[name]) {
+      obj[name] += 1;
+    } else {
+      obj[name] = 1;
+    }
+  }
+
+  const entries = Object.entries(obj);
+  for (const [name, number] of entries) {
+    if (number > entries.length - 1 && name === narName) {
+      return console.log(`${name} Нарцис`);
+    }
+  }
+  return console.log("Нарциса нема");
+}
+
+// function findNar(peoples) {
+//   let narName = "";
+//   for (const { name, know } of peoples) {
+//     if (know.length === 0) {
+//       narName = name;
+//       break;
+//     }
+//   }
+//   if (narName === "") {
+//     ("Нарциса немає!");
+//   }
+//   for (const { name, know } of peoples) {
+//     if (name === narName) {
+//       continue;
+//     }
+//     if (!know.includes(narName)) {
+//       console.log("Нарциса немає!");
+//       return;
+//     }
+//   }
+//   console.log(`Нарцис -- ${narName}`);
+// }
+
+findNar(people);
+findNar(people2);
+findNar(people3);
+findNar(people4);
+
+/*
+? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
+? замість набору незалежних аргументів.
+*/
+
+// function calcBMI({ weight = '', height = '' } = {}) {
+//   //   console.log(obj);
+//   // { weight = '', height = '' } = {}
+//   //   const { weight = '', height = '' } = obj;
+//   //   console.log(weight);
+//   //   console.log(height);
+
+//   const numericWeight = Number.parseFloat(weight.replace(',', '.'));
+//   const numericHeight = Number.parseFloat(height.replace(',', '.'));
+
+//   return Number((numericWeight / numericHeight ** 2).toFixed(1));
+// }
+
+// Було
+// console.log(calcBMI());
+// console.log(calcBMI('68,3', '1.65'));
+// console.log(calcBMI('118,3', '1.95'));
+
+// Очікується
+// console.log(
+//   calcBMI({
+//     weight: '88,3',
+//     height: '1.75',
+//   })
+// );
+
+// calcBMI();
+// console.log(
+//   calcBMI({
+//     weight: '68,3',
+//     height: '1.65',
+//   })
+// );
+// console.log(
+//   calcBMI({
+//     weight: '118,3',
+//     height: '1.95',
+//   })
+// );
+// console.log(calcBMI());
+
+/*
+? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
+? замість набору незалежних аргументів.
+*/
+
+// const printContactsInfo = function ({ names = '', phones = '' } = {}) {
+//   //   console.log(obj);
+//   //   console.log(obj.names);
+//   //   const { names = '', phones = '' } = obj;
+//   //   console.log(names);
+//   //   console.log(phones);
+//   // { names = '', phones = '' } = {}
+//   // const { names, phones } = obj;
+
+//   const nameList = names.split(',');
+//   const phoneList = phones.split(',');
+
+//   for (let i = 0; i < phoneList.length; i += 1) {
+//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+//   }
+// };
+
+// Було
+// printContactsInfo(
+//   'Jacob,William,Solomon,Artemis',
+//   '89001234567,89001112233,890055566377,890055566300'
+// );
+
+// Очікується
+// printContactsInfo({
+//   names: 'Jacob,William,Solomon,Artemis',
+//   phones: '89001234567,89001112233,890055566377,890055566300',
+// });
+// printContactsInfo();
+/*
+? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
+? замість набору незалежних аргументів.
+*/
+
+// function getBotReport({
+//   companyName,
+//   bots: { repair: repairBots, defence: defenceBots },
+// }) {
+//   console.log(obj);
+//   const {
+//     companyName,
+//     bots: { repair, defence },
+//   } = obj;
+//   console.log(companyName);
+//   const { repair, defence } = bots;
+//   console.log(repair);
+//   console.log(defence);
+//   const {
+//     companyName,
+//     bots: { repair: repairBots, defence: defenceBots },
+//   } = obj;
+
+//   return `${companyName} has ${repairBots + defenceBots} bots in stock`;
+// }
+
+// Було
+// console.log(getBotReport('Cyberdyne Systems', 150, 50));
+
+// Очікується
+// console.log(
+//   getBotReport({
+//     companyName: 'Cyberdyne Systems',
+//     bots: {
+//       repair: 150,
+//       defence: 50,
+//     },
+//   })
+// ); // "Cyberdyne Systems has 200 bots in stock"
+
+/*
+? Напиши функцію getStockReport(companyName, stock),
+щоб вона приймала об'єкт параметрів
+з властивостями companyName та stock та виводила репорт
+? про кількість товарів на складі будь-якої компанії.
+*/
+
+// function getStockReport({ companyName, stock: stockItems }) {
+//   //   const { companyName, stock: stockItems } = obj;
+//   let totalItems = 0;
+//   //   const stockItemsKeys = Object.keys(stockItems);
+//   const stockItemsValues = Object.values(stockItems);
+//   // console.log(stockItemsKeys);
+//   //   for (const key of stockItemsKeys) {
+//   //     totalItems += stockItems[key];
+//   //   }
+//   for (const value of stockItemsValues) {
+//     totalItems += value;
+//   }
+
+//   return `${companyName} has ${totalItems} items in stock`;
+// }
+
+// console.log(
+//   getStockReport({
+//     companyName: 'Cyberdyne Systems',
+//     stock: {
+//       repairBots: 150,
+//       defenceBots: 50,
+//     },
+//   })
+// ); //"Cyberdyne Systems has 200 items in stock"
+
+// console.log(
+//   getStockReport({
+//     companyName: 'Belacci',
+//     stock: {
+//       shoes: 20,
+//       skirts: 10,
+//       hats: 5,
+//     },
+//   })
+// ); // "Belacci has 35 item in stock"
+
+/*
+? Напиши функцію createContact(partialContact) так,
+? щоб вона повертала новий об'єкт контакту з доданими властивостями id і createdAt,
+? а також list зі значенням "default" якщо у partialContact немає такої властивості.
+*/
+
+// const generateId = function () {
+//   return '_' + Math.random().toString(36).substr(2, 9);
+// };
+
+// const createContact = function (partialContact) {
+//   //   console.log(partialContact);
+//   return {
+//     id: generateId(),
+//     createdAt: Date.now(),
+//     list: 'default',
+//     ...partialContact,
+//   };
+// };
+
+// console.log(
+//   createContact({
+//     name: 'Mango',
+//     email: 'mango@mail.com',
+//     list: 'friends',
+//   })
+// );
+
+// console.log(
+//   createContact({
+//     name: 'Poly',
+//     email: 'poly@hotmail.com',
+//   })
+// );
+
+/*
+? Напиши функцію transformUsername(user) так, щоб вона повертала новий об'єкт із властивістю fullName замість firstName і lastName.
+*/
+
+// const transformUsername = function ({ firstName, lastName, ...otherProps }) {
+//   //   const { firstName, lastName, ...otherProps } = user;
+//   //{fullName: 'Jacob Mercer' }
+//   return {
+//     fullName: `${firstName} ${lastName}`,
+//     ...otherProps,
+//   };
+
+//   return {
+//     fullName: `${user.firstName} ${user.lastName}`,
+//     id: user.id,
+//     email: user.email,
+//     friendCount: user.friendCount,
+//   };
+// };
+
+// console.log(
+//   transformUsername({
+//     id: 1,
+//     firstName: 'Jacob',
+//     lastName: 'Mercer',
+//     email: 'j.mercer@mail.com',
+//     friendCount: 40,
+//   })
+// );
+
+// console.log(
+//   transformUsername({
+//     id: 2,
+//     firstName: 'Adrian',
+//     lastName: 'Cross',
+//     email: 'a.cross@hotmail.com',
+//     friendCount: 20,
+//   })
+// );
