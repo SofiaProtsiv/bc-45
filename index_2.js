@@ -1,152 +1,233 @@
-"use strict";
 /*
- * Деструктуризація об'єктів
+ * Стрілки, явне - неявне повернення, arguments,
+ * повернення об'єкта
  */
 
-// const user = {
-//   firstName: "John",
-//   lastName: "Reese",
-//   age: 30,
+// function sum(a, b) {
+//   return a + b;
+// }
+// const sum = function (a, b) {
+//   return a + b;
 // };
 
-// /*
-// ? Напишіть деструктуруюче привласнення, яке:
-// ? Властивості firstName присвоє змінну firstName.
-// ? властивості age привласнить змінну userAge.
-// ? властивості isAdmin присвоє змінну isAdmin
-// ? (false, якщо немає такої властивості)
-// */
+// const sum = (a, b) => a + b;
 
-// const {
-//   age: userAge = 20,
-//   firstName = "Unknown",
-//   lastName = "Unknown",
-//   isAdmin = false,
-// } = user;
-// // console.log(age, firstName, lastName);
-// // console.log(user.age, user.firstName, user.lastName);
+// console.log(sum(3, 7));
 
-// console.log("firstName: ", firstName);
-// console.log("lastName: ", lastName);
-// console.log("userAge: ", userAge);
-// console.log("isAdmin: ", isAdmin);
+// // console.log(sum(10, 20));
 
-/*
- * Глибока деструктуризація об'єктів
- */
+//? Два і більше параметрів
 
-// const team = {
-//   //   number: 4,
-//   flag: "./images/flag.jpg",
-//   employees: ["Anton", "Oleg", "Ronnie", "Carr"],
-//   langs: {
-//     original: "uk",
-//     secondary: "pl",
-//     third: {
-//       third: "en",
-//     },
-//   },
+// const calc = (...args) => {
+//   console.log(args);
+//   const [a, b] = args;
+//   //   console.log(a, b);
+//   console.log(a + b);
 // };
-// const defaultImg =
-//   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
 
-// const {
-//   number = 0,
-//   flag = defaultImg,
-//   employees,
-//   //   langs: {
-//   //     original: originalLang,
-//   //     secondary: secondaryLang = "sp",
-//   //     third: { third: thirdLang },
-//   //   },
-//   langs,
-// } = team;
+// calc(10, 20);
 
-// // console.log(thirdLang);
-// // const { original, secondary } = langs;
-// // console.log(originalLang);
-// // console.log(secondaryLang);
-// const { original, secondary: secondaryLang } = langs;
-// console.log(original);
-// console.log(secondaryLang);
+//? Один параметр
 
-// const {
-//   number,
-//   flag,
-//   employees,
-//   langs: { original: originalLang, secondary: secondaryLang },
-// } = team;
+// const greet = (username) => {
+//   console.log(`Hello ${username}!`);
+// };
 
-// console.log("number: ", number);
-// console.log("flag: ", flag);
-// console.log("employees: ", employees);
-// console.log("originalLang: ", originalLang);
-// console.log("secondaryLang: ", secondaryLang);
+// greet("Jeremiah Jennings");
 
-/*
- * Деструктуризація масивів
- */
+//? Без параметрів
 
-// const names = ["Herbert Todd", "Belle Soto", "Roger Marsh", "Ethan Lindsey"];
-// const [user1, , , user2] = names;
-// const user3 = names[0];
+// const greet = function() {
+//     console.log('Hello!');
+// };
+// const greet = () => {
+//   console.log("Hello!");
+// };
+// greet();
 
-// console.log(names);
-// console.log(user1);
-// console.log(user3);
-// console.log(user2);
+//? arguments
 
-// const rgb = [0, 255, 34];
-// const [red = 0, green = 0, blue = 0] = rgb;
+// const calc = (...args) => {
+//   //   console.log(arguments);
+//   let total = 0;
 
-// console.log("red: ", red);
-// console.log("green: ", green);
-// console.log("blue: ", blue);
+//   for (const number of args) {
+//     total += number;
+//   }
+
+//   console.log(total);
+// };
+
+// calc(1, 2, 3, 4);
+
+//? Повернення об'єкту
+
+// 1 варіант
+// const createObj = (obj) => {
+//   return {
+//     id: Date.now(),
+//     ...obj,
+//   };
+// };
+// // 2 варіант
+// const createObj = (obj) => ({ id: Date.now(), ...obj });
+
+// console.log(createObj({ name: "🍎", price: 30, quantity: 3 }));
 
 /*
-? У нас є об'єкт salaries із зарплатами:
-? Створіть функцію topSalary(salaries), яка повертає ім'я 
-працівника з найбільшою заробітною плантею.
-?
-? Якщо об'єкт salaries порожній, потрібно повернути null.
-? Якщо кілька високооплачуваних працівників, можна повернути 
-будь-кого з них.
-? P.S. Використовуйте Object.entries та деструктурування,
-щоб перебрати пари ключ/значення.
+? Виконайте рефакторинг коду за допомогою стрілочних функцій.
 */
 
-// const salaries = {
-//   John: 100,
-//   Pete: 300,
-//   Mary: 2500,
+// const createProduct = (partialProduct, callback) => {
+//   //   const product = { id: Date.now(), ...partialProduct };
+//   callback({ id: Date.now(), ...partialProduct });
 // };
 
-// const topSalary = function (salaries) {
-//   //   console.log(salaries);
-//   const salariesArr = Object.entries(salaries);
-//   let firstItemsalariesArr = salariesArr[0];
-//   //   console.log(salariesArr);
-//   // let maxSalary = salariesArr[0][1];
-//   // let employerName = salariesArr[0][0];
-//   let maxSalary = firstItemsalariesArr[1];
-//   let employerName = firstItemsalariesArr[0];
+// Було
+// const logProduct = function (product) {
+//   console.log(product);
+// };
 
-//   for (const [name, salary] of salariesArr) {
-//     // console.log(emlpoyer); // arr
-//     // console.log(emlpoyer[1]); // salery
-//     // console.log(emlpoyer[0]); // name
+//Стало
+// const logProduct = (product) => console.log(product);
+// logProduct({ a: "Mango" });
+// Було
+// const logTotalPrice = function ({ price, quantity } = {}) {
+//   console.log(`Total price: ${price * quantity}`);
+// };
 
-//     // if (emlpoyer[1] > maxSalary) {
-//     //   maxSalary = emlpoyer[1];
-//     //   employerName = emlpoyer[0];
-//     // }
+// // Стало
+// const logTotalPrice = ({ price, quantity } = {}) => console.log(`Total price: ${price * quantity}`);
 
-//     const [name, salary] = emlpoyer;
-//     if (salary > maxSalary) {
-//       maxSalary = salary;
-//       employerName = name;
-//     }
+// const logTotalPrice = product => console.log(product.price * product.quantity);
+
+// createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
+
+/*
+? Виконайте рефакторинг коду за допомогою стрілочних функцій.
+*/
+
+const TRANSACTION_LIMIT = 1000;
+
+const account = {
+  username: "Jacob",
+  balance: 400,
+
+  withdraw(amount, onSuccess, onError) {
+    if (amount > TRANSACTION_LIMIT) {
+      onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+    } else if (amount > this.balance) {
+      onError(`Amount can't exceed account balance of ${this.balance} credits`);
+    } else {
+      this.balance -= amount;
+      onSuccess(`Account balance: ${this.balance}`);
+    }
+  },
+
+  deposit(amount, onSuccess, onError) {
+    if (amount > TRANSACTION_LIMIT) {
+      onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+    } else if (amount <= 0) {
+      onError(`Amount must be more than 0 credits`);
+    } else {
+      this.balance += amount;
+      onSuccess(`Account balance: ${this.balance}`);
+    }
+  },
+
+  deposit: (amount, onSuccess, onError) => {
+    if (amount > TRANSACTION_LIMIT) {
+      onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+    } else if (amount <= 0) {
+      onError(`Amount must be more than 0 credits`);
+    } else {
+      this.balance += amount;
+      onSuccess(`Account balance: ${this.balance}`);
+    }
+  },
+};
+
+console.log(account);
+
+//Було
+// const handleSuccess = function (message) {
+//   console.log(`✅ Success! ${message}`);
+// };
+
+//Стало
+const handleSuccess = (message) => console.log(`✅ Success! ${message}`);
+
+//Було
+// const handleError = function (message) {
+//   console.log(`❌ Error! ${message}`);
+// };
+//Стало
+const handleError = (message) => console.log(`❌ Error! ${message}`);
+
+account.withdraw(2000, handleSuccess, handleError);
+account.withdraw(600, handleSuccess, handleError);
+account.withdraw(300, handleSuccess, handleError);
+
+account.deposit(1700, handleSuccess, handleError);
+account.deposit(0, handleSuccess, handleError);
+account.deposit(-600, handleSuccess, handleError);
+account.deposit(600, handleSuccess, handleError);
+
+// const account = {
+//   balance: 0,
+//   deposit(amount) {
+//     cl;
+//     this.balance += amount;
+//   },
+// };
+// console.log(account);
+
+/*
+? Виконайте рефакторинг коду за допомогою стрілочних функцій.
+*/
+
+// function each(array, callback) {
+//   const newArr = [];
+//   for (const el of array) {
+// newArr.push(callback(el));
 //   }
-//   console.log(employerName);
-// };
-// topSalary(salaries);
+
+//   return newArr;
+// }
+
+// // const multi = (value) => value * 2;
+
+// // const add = (el) => el + 2;
+
+// // console.log(each(numbers, multi));
+// console.log(each(numbers, (value) => value * 2));
+// console.log(each(numbers, (value) => value + 2));
+// console.log(each(numbers, add));
+
+// console.log(
+//   each(numbers, (value) => {
+//     // value * 2;
+//     console.log('value', value);
+//   })
+// );
+
+// console.log(each([64, 49, 36, 25, 16], value => value - 10));
+// console.log(each([64, 49, 36, 25, 16], value => Math.sqrt(value)));
+// console.log(each([1.5, 2.1, 16.4, 9.7, 11.3], value => Math.ceil(value)));
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.floor(value);
+//   })
+// );
+
+// const numbers = [64, 49, 36, 25, 16];
+// numbers.forEach(function callback(element, index) {
+//   console.log(index);
+// });
+// numbers.forEach((element, index) => {
+//   if (element === 49) {
+//     console.log('Виходимо!');
+//   }
+//   console.log(element);
+// });

@@ -1,145 +1,203 @@
 "use strict";
-
 /*
- * Операція spread як заміна concat та slice
+ * Колбеки, функції вищого порядку
  */
 
-// //*  Копія масива
-// const numbers = [1, 2, 3, 4, 5];
-// // const numbers2 = numbers.slice();
-// // const numbers2 = [].concat(numbers);
-// const numbers2 = [...numbers];
-
-// // console.log(numbers2);
-
-// console.log("numbers: ", numbers);
-// console.log("numbers2: ", numbers2);
-// console.log(numbers === numbers2);
-
-// numbers2[0] = 10;
-
-// console.log("numbers: ", numbers);
-// console.log("numbers2: ", numbers2);
-
-//* Об'єднання масивів
-// const numbers = [1, 2, 3, 4, 5];
-// const numbers2 = [10, 9, 8, 7];
-
-// const allNumbers = numbers2.concat(numbers);
-
-// const allNumbers = [...numbers2, 4, 5, ...numbers];
-
-// console.log(allNumbers);
-
-//* Розпилення масиву у функцію
-// const numbers = [1, 2, 3, 4, 5];
-
-// console.log(Math.max(...numbers));
-// console.log(Math.min(...numbers));
-
-// const str = "hello";
-// console.log(...str);
-/*
- * Операція spread як заміна Object.assign({}, ...sources)
- */
-
-// const o1 = { a: 1 };
-// const o2 = { b: 2 };
-// const o3 = { c: 3 };
-
-// // Object.assign(o1, o2, o3);
-// // const obj = Object.assign(o1, o2, o3);
-// const obj = { ...o1, ...o2, ...o3 };
-// // console.log(obj); // { a: 1, b: 2, c: 3 }
-// // console.log(o1); // { a: 1, b: 2, c: 3 }, изменился и сам целевой объект.
-// // console.log(obj === o1);
-
-// const user = {
-//   username: "Sofia",
-//   password: 1111,
+// const foo1 = function (callback) {
+//   console.log(callback);
+//   console.log(foo2);
+//   // console.log(foo2 === callback);
+//   callback();
 // };
-// console.log(user);
-// Object.assign(user, { password: 2222 });
-
-// console.log(user);
-
-// const animal = {
-//   legs: 4,
+// const foo2 = function () {
+//   console.log(`Hello!`);
 // };
 
-// const cat = Object.create(animal);
-// cat.name = "Kiwi";
-// console.log(cat);
-// // const newCat = _.cloneDeep(cat);
-// const newCat = structuredClone(cat);
-// // const newCat = Object.assign(cat);
-// // const newCat2 = { ...cat };
-// console.log(newCat);
-// console.log(newCat2);
+// // console.log(foo2);
 
-// const user = {
-//   firstName: "Jonathan",
-//   lastName: "Barnett",
-//   age: 30,
+// foo1(foo2);
+
+// //? Запит на сервер
+// const fetchUser = async function (userUrl, callback) {
+//   const response = await fetch(`https://api.github.com/users/${userUrl}`);
+//   const result = await response.json();
+//   //   console.log(callback === showInfoAboutUser);
+//   callback(result);
 // };
 
-// const user2 = { ...user };
+// const showInfoAboutUser = function ({ name, bio, avatar_url, repos_url }) {
+//   //   console.log("showInfoAboutUser", user);
 
-// console.log("user: ", user);
-// console.log("user2: ", user2);
-// // console.log(user === user2);
-
-// user2.firstName = "Birdie";
-// console.log("---------------------");
-// console.log("user: ", user);
-// console.log("user2: ", user2);
-
-//* Розпилення складних типів
-
-// const user = {
-//   firstName: "Jonathan",
-//   lastName: "Barnett",
-//   age: 30,
-//   someArr: [1, 2, 3, 4],
+//   return document.body.insertAdjacentHTML(
+//     "afterbegin",
+//     `<div>
+//           <img width='150' height='150' src="${avatar_url}" />
+//           <h3>${name}</h3>
+//           <p>${bio}</p>
+//           <a href="${repos_url}">My github</a>
+//       </div>`
+//   );
 // };
 
-//  Поверхневе копіювання
-// const user2 = Object.assign(user);
-// const user2 = { ...user };
-//
-/// Глибоке копіювання
-// const user2 = JSON.parse(JSON.stringify(user));
-// const user2 = structuredClone(user);
-//
-//
-// console.log('user: ', user);
-// console.log('user2: ', user2);
-// console.log(user === user2);
-// user.someArr.push(10);
+// fetchUser("SofiaProtsiv", showInfoAboutUser);
 
-// console.log("user: ", user);
-// console.log("user2: ", user2);
+//? Реєстрація подій на сторінці
+// const button = document.querySelector("button");
+
+// // const sayHello = function () {
+// //   console.log("Hello!");
+// // };
+
+// // button.addEventListener("click", sayHello);
+
+// button.addEventListener("click", function (e) {
+//   console.log("Hello!");
+// });
 
 /*
- * Операція rest
- */
+? Напишіть функцію each(array, callback), 
+? яка першим параметром очікує масив, а другим - функцію, 
+? яка застосовується до кожного елемента масиву.
+? Функція each повинна повернути новий масив, 
+? елементами якого будуть результати виклику колбека.
+*/
 
-//? Напишіть функцію sum, яка додає довільну кількість
-//? аргументів, які більше вказаного числа;
+// const each = function (array, callback) {
+//   const arr = [];
 
-const sum = function (...elements) {
-  let total = 0;
-  for (const el of elements) {
-    if (typeof el === "number" && !Number.isNaN(el)) {
-      total += el;
-    }
+//   for (const el of array) {
+//     arr.push(callback(el));
+//   }
+
+//   return arr;
+// };
+
+// const multi = function (el) {
+//   return el * 2;
+// };
+
+// const add = function (el) {
+//   return el + 5;
+// };
+
+// const numbers = [1, 2, 3, 4, 5];
+
+// console.log("MULTI", each(numbers, multi));
+// console.log("SUM", each(numbers, add));
+
+/*
+? Напишіть такі функції:
+? createProduct(product, callback) - приймає об'єкт товару без ID, 
+? а також колбек. Функція створює об'єкт товару, 
+? додаючи унікальний ідентифікатор у властивість id і викликає колбек 
+? передаючи йому створений об'єкт.
+? logProduct(product) - коллбек, що приймає об'єкт продукту 
+? і логіює його в консоль
+? logTotalPrice(product) - коллбек, що приймає об'єкт продукту 
+? і виводить в консоль загальну вартість товару.
+*/
+
+const createProduct = function (product, callback1, callback2) {
+  //   console.log(product);
+
+  const updatedProduct = {
+    ...product,
+    id: new Date(),
+  };
+  //   Object.assign(product, {   id: new Date()})
+
+  //   console.log(first);
+  //   callback1 && callback1(updatedProduct);
+
+  if (callback1) {
+    callback1(updatedProduct);
   }
-  return total;
+  if (callback2) {
+    callback2(updatedProduct);
+  }
 };
 
-const numbers = [1, 2, 3, 4];
-const result = sum(5, 6, 4, NaN, 14, 85, 2, 3, "df", "df", "dfs", NaN);
-console.log(result);
-console.log(sum(...numbers));
-console.log(sum(10, 20, 30));
-// console.log(typeof NaN);
+const logProduct = function (product1) {
+  console.log(product1);
+};
+
+const logTotalPrice = function ({ price, quantity } = {}) {
+  console.log(`Total price: ${price * quantity}`);
+};
+
+createProduct({ name: "🍎", price: 30, quantity: 3 }, null, logProduct);
+createProduct({ name: "🍋", price: 20, quantity: 5 }, null, logProduct);
+createProduct({ name: "🍎", price: 30, quantity: 3 }, logProduct);
+createProduct({ name: "🍋", price: 20, quantity: 5 }, logProduct);
+createProduct({ name: "🍋", price: 20, quantity: 5 }, logTotalPrice);
+
+/*
+? Додайте об'єкту  account  методи для
+? withdraw(amount, onSuccess, onError)
+? і deposit(amount, onSuccess, onError),
+? де перший параметр це сума операції,
+? а другий і третій - колбеки.
+?
+? Метод withdraw викликає:
+? onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`)
+? якщо amount більше TRANSACTION_LIMIT
+? onError(`Amount can't exceed account balance of ${this.balance} credits`)
+? якщо amount більше this.balance
+? onError(`Amount can't exceed account balance of ${this.balance} credits`)
+? інакше знімаємо гроші з балансу і викликаємо
+? onSuccess(`Account balance: ${this.balance}`)
+?
+? Метод deposit викликає:
+? onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`)
+? якщо amount більше TRANSACTION_LIMIT
+? onError(`Amount must be more than 0 credits`) якщо
+? amount менше або дорівнює нулю
+? інакше додаємо до балансу amount і викликаємо
+? onSuccess(`Account balance: ${this.balance}`)
+*/
+
+// const TRANSACTION_LIMIT = 1000;
+
+// const account = {
+//   username: 'Jacob',
+//   balance: 400,
+
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount > this.balance) {
+//       onError(`Amount can't exceed account balance of ${this.balance} credits`);
+//     } else {
+//       this.balance -= amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
+//   },
+
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount <= 0) {
+//       onError(`Amount must be more than 0 credits`);
+//     } else {
+//       this.balance += amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
+//   },
+// };
+
+// const handleSuccess = function (message) {
+//   console.log(`✅ Success! ${message}`);
+// };
+
+// const handleError = function (message) {
+//   console.log(`❌ Error! ${message}`);
+// };
+
+// account.withdraw(2000, handleSuccess, handleError);
+// account.withdraw(600, handleSuccess, handleError);
+// account.withdraw(300, handleSuccess, handleError);
+
+// account.deposit(1700, handleSuccess, handleError);
+// account.deposit(0, handleSuccess, handleError);
+// account.deposit(-600, handleSuccess, handleError);
+// account.deposit(600, handleSuccess, handleError);
