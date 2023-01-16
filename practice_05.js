@@ -36,6 +36,7 @@
 
 // “Basket” entity should be a global variable and be available via console.
 // */
+
 class Product {
   constructor({
     productID,

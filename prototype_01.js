@@ -7,57 +7,54 @@
 
 //* 📌❗️🤓 Власні властивості об'єкта та не власні властивості
 
-// const user = {
-//   firstName: 'Isaac',
-//   age: 40,
-// };
+const user = {
+  firstName: "Isaac",
+  age: 40,
+};
 
-// const user2 = Object.create(user);
-// user2.lastName = 'Nyton';
-// user2.sex = 'man';
+const user2 = Object.create(user);
+user2.lastName = "Nyton";
+user2.sex = "man";
+user2.firstName = "Louis";
+// console.log(user2);
 // console.log(user2.__proto__);
-// console.log(user2);
-// console.log(user2.age);
-// user2.firstName = 'Louis';
-// console.log(user2);
-// console.log(user2.hasOwnProperty('age'));
-// console.log(user2);
-// console.log(user2.age);
-// user2.lastName = 'Miller';
+// console.log(user2.firstName);
+// console.log(user2.hasOwnProperty("age"));
 
-// const user3 = Object.create(user2);
-// user3.firstName = 'Jordan';
+const user3 = Object.create(user2);
+user3.firstName = "Jordan";
 
-// console.log('user: ', user);
-// console.log('user2: ', user2);
-// console.log('user3: ', user3);
+// const userNoPrototype = Object.create(null);
+// userNoPrototype.firstName = "Sofia";
 
-//* Перевірка властивих властивостей obj.hasOwnProperty()
-// console.log(user3.hasOwnProperty('age'));
+// console.log("user: ", user);
+// console.log("user2: ", user2);
+// console.log("user3: ", user3);
+// console.log("userNoPrototype", userNoPrototype);
 
-//* 📌❗️🤓Цикл for...in, перебирає всі властивості, і власні та не власні.
+//* 📌❗️🤓 Перевірка властивих властивостей obj.hasOwnProperty()
 
-// for (const prop in user2) {
-//   //   console.log(prop);
-//   if (user2.hasOwnProperty(prop)) {
-//     // console.log(prop);
-//     console.log(user2[prop]);
+// const key = "firstName";
+// console.log(user3.hasOwnProperty("age"));
+// console.log(user3.hasOwnProperty(key));
+
+//*  📌❗️🤓 Цикл for...in, перебирає всі властивості, і власні та не власні.
+
+// for (const key in user3) {
+//   //   console.log(key);
+//   if (user3.hasOwnProperty(key)) {
+//     console.log(key);
+//   }
+// }
+// for (const key in user3) {
+//   if (Object.hasOwnProperty.call(user3, key)) {
+//     console.log(key);
 //   }
 // }
 
-// const keysUser2 = Object.keys(user2);
-// console.log(keysUser2);
-
-// const numbers = [1, 2, 3];
-// numbers.push();
-// console.log(numbers.__proto__);
-
-// const num = 10.25;
-
-// new String(str);
-
-// new Number(num);
-
-// console.dir(Number);
-
-// console.log(num.toFixed(1));
+// const keysUser3 = Object.keys(user3);
+// const valuesUser3 = Object.values(user3);
+// const entriesUser3 = Object.entries(user3);
+// console.log(keysUser3);
+// console.log(valuesUser3);
+// console.log(entriesUser3);

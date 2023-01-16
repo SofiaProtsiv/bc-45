@@ -1,4 +1,5 @@
-//? 📌❗️🤓  Функція конструктор створює шаблон за яким будуть створені однотипні об'єкти
+//? 📌❗️🤓  Функція конструктор створює шаблон
+//? за яким будуть створені однотипні об'єкти
 
 //TODO:  Створюємо людину за образом
 
@@ -10,7 +11,7 @@ function CreateUser({
   eyesColor,
   gender,
 }) {
-  //   const { firstName, lastName, age } = params;
+  // console.log(this); // екземпляр, об'єкт
 
   this.firstName = firstName;
   this.lastName = lastName;
@@ -18,15 +19,23 @@ function CreateUser({
   this.hairColor = hairColor;
   this.eyesColor = eyesColor;
   this.gender = gender;
+
+  // this.getFullName = function () {
+  //   return `${this.firstName} ${this.lastName}`;
+  // }; //попаде на екземпляр
+
+  // this.changeHairColor = function (newColor) {
+  //   this.hairColor = newColor;
+  // }; //попаде на екземпляр
 }
 
 CreateUser.prototype.getFullName = function () {
   return `${this.firstName} ${this.lastName}`;
-};
+}; //попаде у прототип
 
 CreateUser.prototype.changeHairColor = function (newColor) {
   this.hairColor = newColor;
-};
+}; //попаде у прототип
 
 const user = new CreateUser({
   firstName: "Jeff",
@@ -35,11 +44,9 @@ const user = new CreateUser({
   hairColor: "brown",
   eyesColor: "brown",
   gender: "male",
+  hobby: "dance",
 });
-// // user.changeHairColor('black');
-// // console.log(user);
-// console.log(CreateUser.prototype === user.__proto__);
-// // console.log(user.__proto__);
+
 const user2 = new CreateUser({
   firstName: "Jean",
   lastName: "Smith",
@@ -49,5 +56,20 @@ const user2 = new CreateUser({
   gender: "female",
 });
 
-console.log(user2.getFullName());
-console.log(user.__proto__ === user2.__proto__);
+user.hobby = "dance";
+user.__proto__.getHooby = function () {
+  return this.hobby;
+};
+
+// console.log(user);
+// console.log(user2);
+
+// console.log(CreateUser.prototype === user.__proto__);
+// console.log(CreateUser.prototype);
+
+// console.log(user.__proto__);
+// console.log(user2.__proto__);
+// console.log(user.__proto__ === user2.__proto__);
+
+// console.log(user2.getFullName());
+// user.changeHairColor('black');
