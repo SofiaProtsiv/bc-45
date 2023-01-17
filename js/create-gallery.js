@@ -34,32 +34,24 @@ const pictures = [
 
 /*
 <li class="gallery-item">
-  <a href="#">
     <img src="https://picsum.photos/id/237/200/300" alt="Labrador">
-  </a>
 </li>
 */
 
 const galleryListRef = document.querySelector(".js-gallery");
 
-const itemsList = pictures.map(({ url, alt, width, height }) => {
+const liMarkup = pictures.map(({ width, height, url, alt }) => {
   const liEl = document.createElement("li");
-  liEl.classList.add("gallery__item");
-
-  const linkEl = document.createElement("a");
-  linkEl.href = "#";
-
   const imgEl = document.createElement("img");
+
   imgEl.src = url;
   imgEl.alt = alt;
-  imgEl.width = width;
-  imgEl.height = height;
+  imgEl.style.width = width;
+  imgEl.style.height = height;
 
-  linkEl.append(imgEl);
-  liEl.append(linkEl);
-  // galleryListRef.append(liEl);💩
+  liEl.append(imgEl);
+  // galleryListRef.append(liEl); //bad
   return liEl;
 });
 
-galleryListRef.append(...itemsList);
-// console.log(galleryListRef.innerHTML);
+galleryListRef.prepend(...liMarkup);
