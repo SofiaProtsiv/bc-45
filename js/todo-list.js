@@ -13,7 +13,7 @@ const createNewTaskElement = newTodo => {
 };
 
 const addTask = event => {
-  // console.log(taskInput.textContent); //💩
+  // console.log(taskInput.textContent); // 💩
   const newTodo = taskInput.value;
 
   if (newTodo === '') {

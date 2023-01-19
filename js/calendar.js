@@ -2,65 +2,45 @@
 
 const calendarREf = document.querySelector('.calendar');
 
-calendarREf.addEventListener('click', toggleActive);
+// VARIANT 1
+let prevTdRef = null;
 
-//Variant 1
-function toggleActive(event) {
-  if (event.target.nodeName !== 'TD') {
+calendarREf.addEventListener('click', event => {
+  const { target } = event;
+
+  if (target.nodeName !== 'TD') {
+    return;
+  }
+  if (target === prevTdRef) {
+    target.classList.toggle('active');
     return;
   }
 
-  const activeBtn = calendarREf.querySelector('.active');
+  if (prevTdRef) {
+    prevTdRef.classList.remove('active');
+  }
+  prevTdRef = target;
+  target.classList.add('active');
+});
 
-  if (activeBtn) {
-    activeBtn.classList.remove('active');
+// VARIANT 2
+const toggleActive = ({ target }) => {
+  if (target.nodeName !== 'TD') {
+    return;
   }
 
-  event.target.classList.add('active');
-}
+  const isActive = document.querySelector('.active');
 
-//Variant 2
-let previusActiveBtn = null;
-
-function toggleActive(event) {
-  if (event.target.nodeName === 'TD') {
-    previusActiveBtn = calendarREf.querySelector('.active');
-
-    if (previusActiveBtn) {
-      previusActiveBtn.classList.remove('active');
-    }
-
-    event.target.classList.add('active');
+  if (isActive === target) {
+    isActive.classList.remove('active');
+    return;
   }
-}
-//
-//
-//
-//
 
-//
-//
-//
-//
-//v
+  if (isActive) {
+    isActive.classList.remove('active');
+  }
 
-// const toggleActive = ({ target }) => {
-//   if (target.nodeName !== 'TD') {
-//     return;
-//   }
+  target.classList.toggle('active');
+};
 
-//   const isActive = document.querySelector('.active');
-
-//   if (isActive === target) {
-//     isActive.classList.remove('active');
-//     return;
-//   }
-
-//   if (isActive) {
-//     isActive.classList.remove('active');
-//   }
-
-//   target.classList.toggle('active');
-// };
-
-// calendarREf.addEventListener('click', toggleActive);
+calendarREf.addEventListener('click', toggleActive);
