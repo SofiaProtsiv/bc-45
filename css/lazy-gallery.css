@@ -1,0 +1,32 @@
+.container {
+  /* max-width: 990px; */
+}
+.container {
+  width: 85vw;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin: 4rem;
+  font-size: 3.2rem;
+  text-shadow: 3px 3px aqua;
+}
+
+img {
+  border-radius: 10px;
+  display: block;
+  margin: 2rem auto;
+  width: 800px;
+  height: 500px;
+  object-fit: cover;
+  background: #cecece;
+
+  transform: translateX(100px);
+  opacity: 0;
+  transition: 150ms;
+}
+img.appear {
+  opacity: 1;
+  transform: translateX(0);
+}
