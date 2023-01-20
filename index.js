@@ -1,430 +1,228 @@
 "use strict";
-/*
- *  Масиви: літерали массива, елементи, індексація, довжина
- */
-// Масив - структура даних для зберігання і маніпулювання
-// колекцією індексованих значень. Використовується для зберігання
-// впорядкованих колекцій даних, наприклад, списку курортів, товарів, клієнтів в готелі тощо.
-/*
 
+const users = [
+  {
+    id: "701b29c3-b35d-4cf1-a5f6-8b12b29a5081",
+    name: "Moore Hensley",
+    email: "moorehensley@indexia.com",
+    eyeColor: "blue",
+    friends: ["Sharron Pace"],
+    isActive: false,
+    balance: 2811,
+    skills: ["ipsum", "lorem"],
+    gender: "male",
+    age: 37,
+  },
+  {
+    id: "7a3cbd18-57a1-4534-8e12-1caad921bda1",
+    name: "Sharlene Bush",
+    email: "sharlenebush@tubesys.com",
+    eyeColor: "blue",
+    friends: ["Briana Decker", "Sharron Pace"],
+    isActive: true,
+    balance: 3821,
+    skills: ["tempor", "mollit", "commodo", "veniam", "laborum"],
+    gender: "female",
+    age: 34,
+  },
+];
 
-? Створіть масив genres з елементами Jazz і Blues.
-? Додайте «Рок-н-рол» до кінця.
-? Виведіть у консоль перший елемент масиву.
-? Виведіть у консоль останній елемент масиву. Код має працювати для масиву довільної довжини.
-? Видаліть перший елемент та виведіть його в консоль.
-? Вставте «Country» та «Reggy» на початок масиву.
- */
+// 📌❗️🤓 Поверхневе та глибоке копіювання, як копіюються складні та примітивні типи даних
 
-const genres = ["Jazz", "Bluz"];
+///////////////////////////////// ---поверхневе копіювання--- /////////////////////////////////
 
-// const genres = ["Jazz", "Blues", "Рок-н-рол", "Country", "Reggy"];
-// genres[4] = "Рок-н-рол";
-// console.log(genres[2]);
-genres.push("Рок-н-рол");
-genres.unshift("Country", "Reggy");
-// console.log(genres.length);
-// console.log(genres[0]);
-// console.log(genres[genres.length - 1]);
-// console.table(genres);
-// genres.shift();
-// genres.pop();
+// const newUsers = [...users]; // поверхневе копіювання
+// const newUsers = [].concat(users); // поверхневе копіювання
+// const newUsers = users.slice(); // поверхневе копіювання
 
-// console.log(genres.push("Рок-н-рол"));
-// console.log(genres.shift());
-// console.log(genres.pop());
+// newUsers[1].name = "newName";
+// newUsers[1].friends.push("newFriend");
+// console.log(newUsers[0] === users[0]); //true
+// console.log(newUsers === users); //false
 
-// console.log([].shift());
-// console.log(genres);
-// const indexFindEl = genres.indexOf("Jazz"); // Jazz
-// console.log(indexFindEl);
+///////////////////////////////// ---глибоке копіювання--- /////////////////////////////////
 
-// const newGenres = genres.slice();
-// newGenres.push("Hello");
-// console.table("newGenres", newGenres);
-// console.table("genres", genres);
-/*
- * Передача за посиланням та за значенням
- */
+// const newUsers = JSON.parse(JSON.stringify(users)); // глибоке копіювання
+// const newUsers = structuredClone(users); // глибоке копіювання
 
-/*
-? Створіть змінну a = 10.
-? Створіть та привласніть змінній b -> змінну a
-? Виведіть в консоль обидві ці змінні
-? Змініть значення змінної a і ще раз виведіть у консоль
-*/
-// const genre = ["Jazz", "Bluz"];
-// const newGenre = genre; // ["Jazz", "Bluz"]
-// console.log(newGenre);
+// newUsers[1].name = "newName";
+// newUsers[1].friends.push("newFriend");
 
-// newGenre.push("hello");
-// console.log(genre);
-// console.log(newGenre);
-//
-//
-// const c = [3];
-// const d = c;
-// c[5] = 6;
-// console.log(c, d);
-// console.log(c === d);
+// console.log(users);
+// console.log(newUsers);
 
-// let a = 10;
-// let b = a; //10
+// console.log(newUsers[0] === users[0]); //false
+// console.log(newUsers === users); //false
 
-// console.log("a: ", a); // 10
-// console.log("b: ", b); // 10
-
-// a = 30;
-// b = 20;
-// console.log(a === b);
-// console.log("a: ", a); // 20
-// console.log("b: ", b); // 10
-
-/*
-? Створіть масив arr1 = [1, 2, 3].
-? Створіть та привласніть масиву arr2 -> масив arr1
-? Вибачте в консоль обидва ці масиви
-? Додайте елемент в масив arr1 і ще раз виведете обидва масиви в консоль
-*/
-
-// const arr1 = [1, 2, 3];
-// const arr2 = arr1; //[1, 2, 3]
-
-// console.log("arr1: ", arr1); // [1, 2, 3]
-// console.log("arr2: ", arr2); // [1, 2, 3]
-
-// arr1.push(10);
-
-// console.log("arr1: ", arr1); // [1, 2, 3, 10]
-// console.log("arr2: ", arr2); // [1, 2, 3, 10]
-
-/*
- * Перебір масиву циклами for и for...of
- */
-
-/*
-? Напиши скрипт для перебору масиву fruits циклом for.
-? Для кожного елемента масиву виведіть у консоль рядок у форматі номер_елемента: значення_елемента.
-? Нумерація елементів має починатися з одиниці.
-*/
-
-// const fruits = ["🍎", "🍇", "🍑", "🍌", "🍋"];
-
-// for (let i = 0; i < fruits.length; i++) {
-//   console.log(`${i + 1}: ${fruits[i]}`);
-//   //   console.log(i + 1 + ": " + fruits[i]);
+// 📌❗️🤓 reduce
+// function sum() {
+//   return numbers.reduce((total, number) => {
+//     total += number;
+//     return total;
+//   }, 0);
 // }
-// for (let i = fruits.length - 1; i >= 0; i -= 1) {
-//   console.log(`${i + 1}: ${fruits[i]}`);
-//   //   console.log(i + 1 + ": " + fruits[i]);
-// }
-/*
-? Напиши скрипт пошуку найменшого числа у масиві.
-? Код має працювати для будь-якого масиву чисел.
-? Використовуйте цикл для вирішення задачі.
-*/
+// console.log(sum(1, 2, 3, 4, 5, 6));
 
-const numbers = [2, 17, 94, 1, -20, -50, 23, 37];
-// let min = numbers[0]; //2
-let min = 0;
+// 📌❗️🤓 hidden, querySelectorAll, style, textContent
+// const ulChildren = document.querySelectorAll("li");
 
-// 1 Варіант розв'язання
-// for (let i = 0; i < numbers.length; i += 1) {
-// console.log(numbers[i]);
-//   if (numbers[i] < min) {
-//     min = numbers[i]; //-50
+// console.dir(ulChildren[1]);
+// ulChildren.forEach((li, index) => {
+//   li.textContent = index + 1;
+
+//   li.style["font-size"] = "30px";
+//   li.style.fontSize = "30px";
+
+//   if (index % 2 === 0) {
+//     li.hidden = !li.hidden;
 //   }
+// });
+
+// 📌❗️🤓 Стек виклику функцій
+// console.log("Start");
+
+// function createMarkup(array) {
+//   array.forEach((li, index) => {
+//     li.textContent = index + 1;
+
+//     li.style["font-size"] = "30px";
+//     li.style.fontSize = "30px";
+
+//     if (index % 2 === 0) {
+//       li.hidden = !li.hidden;
+//     }
+//   });
 // }
-// console.log(Math.min(2, 17, 94, 1, -20, -50, 23, 37));
-// console.log(Math.min(...numbers));
-// console.log(min);
 
-// 2 Варіант розв'язання
+// function renderCards() {
+//   createMarkup(ulChildren);
+//   showMessage("Success");
+// }
 
-// for (const number of numbers) {
-//   //   console.log(number);
-//   if (number < min) {
-//     min = number;
+// function showMessage(message) {
+//   console.log(message);
+// }
+
+// renderCards();
+
+// console.log("Finish");
+
+// 📌❗️🤓 Деструктиризація
+// const refs = {
+//   ulEl: document.querySelector("ul"),
+//   liEl: document.querySelectorAll("li"),
+// };
+
+// 1
+// const { ulEl, liEl } = refs;
+
+// 2
+// function showUser(user) {
+//   const{ name, isActive } = user;
+//   console.log(name, isActive);
+// }
+// showUser(users[1]);
+
+// 3
+// function showUser({ name, isActive }) {
+//   console.log(name, isActive);
+// }
+
+// showUser(users[1]);
+
+// 📌❗️🤓 Умовний рендеринг
+// const markup = users
+//   .map(({ name, isActive }) => {
+//     return `<li class=${isActive ? "active" : "inactive"}>${name}</li>`;
+//   })
+//   .join("");
+
+// ulEl.insertAdjacentHTML("beforebegin", markup);
+
+// 📌❗️🤓 Menu
+// const menu = document.querySelector("ul");
+// const liList = document.querySelectorAll("li");
+
+// liList.forEach((li) => {
+//   const span = document.createElement("span");
+//   li.prepend(span);
+//   span.append(span.nextSibling);
+// });
+
+// function handleOpenMenu(event) {
+//   if (event.target.nodeName === "SPAN") {
+//     const subMenu = event.target.nextElementSibling;
+//     if (subMenu) {
+//       subMenu.hidden = !subMenu.hidden;
+//     }
 //   }
+
+//   //   if (event.target.nodeName === "LI") {
+//   //     const subMenu = event.target.children[0];
+//   //     if (subMenu) {
+//   //       subMenu.hidden = !subMenu.hidden;
+//   //     }
+//   //   }
 // }
 
-// console.log(min);
+// menu.addEventListener("click", handleOpenMenu);
 
-// const genres = ["Jazz", "Blues", "Рок-н-рол", "Country", "Reggy"];
+// 📌❗️🤓 call apply bind
 
-// let longestWord = genres[0];
-// console.log(longestWord);
-// for (const genre of genres) {
-//   if (longestWord.length < genre.length) {
-//     longestWord = genre;
-//   }
-// }
-// console.log(longestWord);
-/*
-? У нас є масив із зарплатами працівників, потрібно порахувати загальну суму зарплат
-*/
-
-// const salaries = [200, 450, 600, 150, 300];
-// let total = 0;
-
-// 1 Варіант розв'язання
-// for (let i = 0; i < salaries.length; i += 1) {
-//   // console.log(salaries[i]);
-//   //   total = total + salaries[i];
-
-//   total += salaries[i];
+// const user = {
+//   username: "Sofia",
+// };
+// function showMessage() {
+//   console.log(this);
 // }
 
-// 2 Варіант розв'язання
-// for (const salary of salaries) {
-//   //   console.log(salary);
-//   total += salary;
-// }
-// console.log(total);
-// console.log(total);
+// const newShowMessage = showMessage.bind(user);
 
-/*
-? У нас є кілька масивів із зарплатами співробітників з
-? різних відділів, потрібно порахувати загальну суму зарплат
-*/
+// newShowMessage();
 
-const managerSalaries = [1000, 1500, 2500, 4000, 5000];
-const developersSalaries = [8000, 15000, 40000];
-// let total = 0;
-// // // 1 Варіант  розв'язання
-// for (const managerSalary of managerSalaries) {
-//   total += managerSalary;
-//   //   total = total + managerSalary;
-// }
-// console.log(total);
-// for (const developerSalary of developersSalaries) {
-//   total += developerSalary;
-// }
+// const newFn = () => console.log(this);
+// newFn();
 
-// console.log(total);
+// 📌❗️🤓 call apply bind function and obj methods
 
-// 2 Варіант розв'язання
-// const salaries = [];
-// let total = 0;
-// for (const managerSalary of managerSalaries) {
-//   salaries.push(managerSalary);
-// }
-// console.log(salaries);
-// for (const developerSalary of developersSalaries) {
-//   //   console.log(developerSalary);
-//   salaries.push(developerSalary);
-// }
-// console.log(salaries);
-// for (const salary of salaries) {
-//   total += salary;
-// }
+// const directRoute = function (to = "Chop") {
+//   console.log(`${this.from} => ${to}`);
+// };
 
-// console.log(total);
+// const train1 = {
+//   from: "Kyiv",
+//   directRoute,
+// };
+// const train2 = {
+//   from: "Lviv",
+//   directRoute,
+// };
 
-// 3 Варіант розв'язання
+// directRoute.apply(train1, ["Vinnytsia"]);
+// directRoute.call(train1);
 
-// let allSalaries = [].concat(managerSalaries, developersSalaries);
-// let total = 0;
-// for (const salary of allSalaries) {
-//   total += salary;
-// }
-// console.log(total);
-// console.log(allSalaries);
-// const g = allSalaries;
+// train2.directRoute();
+// train1.directRoute.call(train2, "Odessa");
 
-// console.log(g === allSalaries);
-// console.log(g);
-// console.log(allSalaries);
+// const yourDirectRoute = directRoute.bind(train1);
+// yourDirectRoute();
+// yourDirectRoute("Kharkiv");
 
-// console.log(g);
-// console.log(allSalaries);
+// const theirDirectRoute = directRoute.bind(train2, "Poltava");
+// theirDirectRoute();
+// theirDirectRoute("Cherkasy");
+// theirDirectRoute.call(train1);
 
-/*
- * Базові методи: split и join, indexOf и includes, push, slice и splice, concat
- */
+// const anotherDirectRoute = train1.directRoute;
+// console.log(anotherDirectRoute());
 
-/*
-? Напиши скрипт для обчислення площі прямокутника зі сторонами,
-? значення яких зберігаються в змінних значеннях у вигляді рядка.
-? Значення гарантовано розділені пробілом.
-*/
+// const directRoute = function (to = "Chop") {
+//   console.log(`${this.from} => ${to}`);
+// };
 
-// const values = "8 11";
+// const train1 = {
+//   from: "Kyiv",
+//   directRoute,
+// };
 
-// const sidesArr = values.split(" ");
-// // console.log(sidesArr);
-// const area = Number(sidesArr[0]) * Number(sidesArr[1]);
-// // const area = Number(sidesArr[0] * sidesArr[1]);
-
-// console.log(area);
-
-/*
-? Напиши скрипт, який виводить у консоль ім'я та телефонний номер користувача.
-? У змінних names і phones зберігаються рядки імен та телефонних номерів, розділені комами.
-? Порядковий номер імен та телефонів у рядках вказують на відповідність.
-? Кількість імен та телефонів гарантовано однакова.
-*/
-
-// const names = "Jacob, William, Solomon, Artemis";
-// const phones = "89001234567, 89001112233, 890055566377, 890055566300";
-
-// const namesArr = names.split(", ");
-// const phonesArr = phones.split(", ");
-
-// for (let i = 0; i < namesArr.length; i += 1) {
-//   //   console.log(namesArr[i]);
-//   //   console.log(phonesArr[i]);
-//   //   console.log(namesArr[i] + ":" + phonesArr[i]);
-//   console.log(`${namesArr[i]}: ${phonesArr[i]}`);
-// }
-
-/*
-? Напиши скрипт, який «розвертає» рядок (зворотний порядок букв)
-? та виводить її в консоль.
-*/
-
-// 1 Варіант розв'язання
-const string = "Welcome to the future!";
-// console.log(string);
-// console.log(string.reverse());
-// console.log(String.prototype);
-// const charsArr = string.split("");
-// console.log(charsArr);
-// const charsArrReverse = charsArr.reverse();
-// console.log(charsArrReverse);
-// console.log(charsArrReverse.join(""));
-
-// let reverseString = "";
-
-// for (let i = 0; i < string.length; i += 1) {
-//   // console.log(string[string.length - 1 - i]);
-//   //   console.log(string.length - 1 - i);
-//   reverseString += string[string.length - 1 - i];
-// }
-// console.log(reverseString);
-// let reverseString = "";
-
-// for (let i = string.length - 1; i >= 0; i -= 1) {
-//   reverseString += string[i];
-// }
-// console.log(reverseString);
-// console.log(reverseCharsArr.join(""));
-
-// 2 Варіант розв'язання
-// const string = "Welcome to the future!";
-// let reverseArr = [];
-
-// for (let i = string.length - 1; i >= 0; i -= 1) {
-//   reverseArr.push(string[i]);
-// }
-
-// console.log(reverseArr.join(""));
-
-// const array = [7, 7, 7, 5, 5, 5];
-// console.log(arr.reverse());
-// for (let i = 0; i < array.length / 2; i += 1) {
-// let temp = array[i];
-// array[i] += array[array.length - 1 - i];
-// // array[i] = array[array.length - 1 - i];
-// array[array.length - 1 - i] = array[i] - array[array.length - 1 - i];
-// array[i] -= array[array.length - 1 - i];
-// console.log("index i", i);
-// console.log("array[i]", array[i]);
-// console.log("array[array.length - 1 - i]", array[array.length - 1 - i]);
-// console.log("array.length - 1 - i", array.length - 1 - i);
-// console.log("-------------------------");
-// array[i] = array[array.length - 1 - i];
-// array[array.length - 1 - i] = temp;
-// }
-// console.log(array);
-/*
-? У нас є масив співробітників, відсортуйте його, щоб співробітники не повторювалися
-*/
-
-const employees = ["Dennis", "Dennis", "Shaw", "Watkins", "Watkins", "Ray"];
-// console.log(employees);
-const filteredEmployees = [];
-// console.log(employees.indexOf("Dennis"));
-// // 0 === 0
-// // 1 === 1
-// // 2 === 2
-// // 3 === 3
-// // 1 === 4
-// // 3 === 5
-
-// for (let i = 0; i < employees.length; i++) {
-//   // console.log(employees[i]);
-//   // console.log(employees.indexOf(employees[i]));
-//   console.log(
-//     `indexOf(${employees[i]})`,
-//     employees.indexOf(employees[i]),
-//     `index ${employees[i]}`,
-//     i
-//   );
-//   console.log("indexOf === index", employees.indexOf(employees[i]) === i);
-//   //   console.log("-----------------------------");
-//   // console.log(`index ${employees[i]}`, i);
-//   if (employees.indexOf(employees[i]) === i) {
-//     filteredEmployees.push(employees[i]);
-//   }
-// }
-// console.log(filteredEmployees);
-// for (let i = 0; i < employees.length; i += 1) {
-//   if (employees.indexOf(employees[i]) === i) {
-//     filteredEmployees.push(employees[i]);
-//   }
-// }
-
-// for (let i = 0; i < employees.length; i += 1) {
-//   if (employees.indexOf(employees[i]) !== i) {
-//     employees.splice(i, 1);
-//   }
-// }
-// console.table(employees);
-// const elToUpdate = employees.indexOf("Ray");
-// employees.splice(elToUpdate, 1, "HELLO");
-// console.table(employees);
-// //? Співробітник Shaw звільнився, видаліть його з масиву
-// const index = employees.indexOf("Shaw");
-// employees.splice(index, 1);
-// console.log(employees);
-// const indexOfRemovedElement = filteredEmployees.indexOf('Shaw');
-// filteredEmployees.splice(indexOfRemovedElement, 1);
-
-// console.log(filteredEmployees);
-
-// //? Додати нового співробітника Thornton, перед Watkins;
-
-// const indexOfWatkins = employees.indexOf("Watkins");
-
-// employees.splice(indexOfWatkins, 0, "Thornton");
-// console.log(employees);
-// const indexOfRay = employees.indexOf("Ray");
-// employees.splice(indexOfRay, 2, "Pango");
-// console.log(employees);
-// slug
-// const title = 'Title 1'.split(' ').join('-'); // Title-1
-// console.log(title);
-
-//янесугусеня
-// const str = "Де помити мопед";
-// const str = "І була пані на палубІ!!!";
-
-// const str = "я несу гусеня!";
-// const newString = str.split("");
-// newString.splice(0, 1, str[0].toUpperCase());
-// console.log(newString.join(""));
-// const strUpdateWithoutSpase = strUpdate.replaceAll(" ", "");
-// // console.log(strUpdateWithoutSpase);
-// const strUpdateWithoutSpaseToArray = strUpdateWithoutSpase.split("");
-// const strUpdateWithoutSpaseToArrayReverse =
-//   strUpdateWithoutSpaseToArray.reverse();
-// const strUpdateWithoutSpaseToArrayReverseToString =
-//   strUpdateWithoutSpaseToArrayReverse.join("");
-// console.log(
-//   strUpdateWithoutSpaseToArrayReverseToString === strUpdateWithoutSpase
-// );
-// console.log(strUpdateWithoutSpaseToArrayReverseToString);
-// const strUpdate = str.toLowerCase().replaceAll(" ", "");
-// const strReversed = strUpdate.split("").reverse().join("");
-// console.log(strUpdate === strReversed);
+// document.addEventListener("click", train1.directRoute.bind(train1, "Lviv"));
