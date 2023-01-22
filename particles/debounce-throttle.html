@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/debounce-throttle.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+  </head>
+  <body>
+    <div class="left-panel">Raw resize events<br /></div>
+    <div class="center-panel">Throttle events<br /></div>
+    <div class="right-panel">Debounced events<br /></div>
+
+    <form class="form">
+      <input type="text" class="autocomplete" />
+      <div class="plain-input-panel">Input events: <span></span></div>
+      <div class="throttle-input-panel">Throttle events: <span></span></div>
+      <div class="debounce-input-panel">Debounced events: <span></span></div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="../js/debounce-throttle.js"></script>
+  </body>
+</html>

@@ -65,20 +65,9 @@ const handleInput = event => {
     listRef.innerHTML = '';
     errorTextRef.textContent = `Countri ${value} not found!`;
   }
-
-  // const countryInfo = countries.find(country => country.name === value.trim());
-
-  // if (!countryInfo) {
-  //   errorTextRef.textContent = `Countri ${value} not found!`;
-  //   listRef.innerHTML = '';
-  // }
-
-  // if (countryInfo) {
-  //   errorTextRef.textContent = '';
-  //   listRef.innerHTML = createCountryCard(countryInfo);
-  // }
 };
-const debouncedHandleInput = _.debounce(handleInput, 300);
+
+const debouncedHandleInput = _.debounce(handleInput, 1000);
 searchInputRef.addEventListener('input', debouncedHandleInput);
 
 const createCountryList = counrtiesList => {
@@ -98,39 +87,3 @@ const createCountryCard = ({ name, capital, area, population }) => {
   <p>area: ${area}</p>
   </li>`;
 };
-
-// const searchInputRef = document.querySelector('.search-input');
-// const errorTextRef = document.querySelector('.output-error');
-// const listRef = document.querySelector('.country-card');
-
-// const handleInput = event => {
-//   const { value } = event.target;
-
-//   if (value.trim() === '') {
-//     errorTextRef.textContent = '';
-//     return;
-//   }
-
-//   const countryInfo = countries.find(country => country.name === value.trim());
-
-//   if (!countryInfo) {
-//     errorTextRef.textContent = `Countri ${value} not found!`;
-//     listRef.innerHTML = '';
-//   }
-
-//   if (countryInfo) {
-//     errorTextRef.textContent = '';
-//     listRef.innerHTML = createCountryCard(countryInfo);
-//   }
-// };
-// const debouncedHandleInput = _.debounce(handleInput, 300);
-// searchInputRef.addEventListener('input', debouncedHandleInput);
-
-// const createCountryCard = ({ name, capital, area, population }) => {
-//   return `<li>
-//   <h3> Country name: ${name}</h3>
-//   <p>Country capital: ${capital}</p>
-//   <p>population: ${population}</p>
-//   <p>area: ${area}</p>
-//   </li>`;
-// };
