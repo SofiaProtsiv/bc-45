@@ -4,7 +4,7 @@
 let options = {
   root: document.querySelector('.scroll-list'),
   // root - елемент, який виступає в ролі області перегляду для target (предок цільового елемента або null для viewport)
-  rootMargin: '5px',
+  rootMargin: '100px',
   // rootMargin - відступи навколо root (margin у CSS, за умовчанням всі відступи дорівнюють 0)
   threshold: 0.5,
   // threshold - число або масив чисел, що вказує допустимий відсоток перетину target та root

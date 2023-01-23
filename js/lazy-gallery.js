@@ -3,22 +3,21 @@ const galleryImgRef = document.querySelectorAll('img');
 const lasyLoad = targets => {
   const options = {
     rootMargin: '100px',
-    threshold: 0.3,
+    threshold: 0.8,
   };
 
   const onEntry = (entries, observer) => {
-    entries.forEach(({ target, isIntersecting }) => {
-      // variant 1
-      target.src = target.dataset.src;
-      target.classList.toggle('appear', isIntersecting);
+    entries.forEach(({ isIntersecting, target }) => {
+      //   // animation variant 1
+      if (isIntersecting) {
+        target.src = target.dataset.src;
+        target.classList.add('appear');
+        observer.unobserve(target);
+      }
 
-      // variant 2
-      // if (isIntersecting) {
-      //   target.src = target.dataset.src;
-      //   target.classList.add('appear');
-
-      //   observer.unobserve(target);
-      // }
+      //   // animation variant 2
+      // target.src = target.dataset.src;
+      // target.classList.toggle('appear', isIntersecting);
     });
   };
 

@@ -52,5 +52,5 @@ function throttle_typing() {
   span.textContent = autocomplete.value;
 }
 autocomplete.addEventListener('input', typing);
-autocomplete.addEventListener('input', _.debounce(debounce_typing, 1000));
-autocomplete.addEventListener('input', _.throttle(throttle_typing, 1000));
+autocomplete.addEventListener('input', _.debounce(debounce_typing, 2000));
+autocomplete.addEventListener('input', _.throttle(throttle_typing, 2000));

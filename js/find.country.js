@@ -37,38 +37,29 @@ const errorTextRef = document.querySelector('.output-error');
 const listRef = document.querySelector('.country-card');
 
 const handleInput = event => {
-  let { value } = event.target;
+  const inputValue = event.target.value.toLowerCase();
 
-  value = value.trim().toLowerCase();
+  const countryInfo = countries.filter(({ name }) => name.toLowerCase().includes(inputValue));
 
-  if (value === '') {
+  if (inputValue === '') {
     errorTextRef.textContent = '';
-    listRef.innerHTML = '';
     return;
   }
 
-  const countryInfo = countries.filter(({ name }) => name.toLowerCase().includes(value));
-
   if (countryInfo.length > 1) {
-    const listMarkup = createCountryList(countryInfo).join('');
-    listRef.innerHTML = listMarkup;
+    listRef.innerHTML = createCountryList(countryInfo);
     errorTextRef.textContent = '';
   }
 
   if (countryInfo.length === 1) {
-    const listMarkup = createCountryCard(countryInfo[0]);
-    listRef.innerHTML = listMarkup;
+    listRef.innerHTML = createCountryCard(countryInfo[0]);
     errorTextRef.textContent = '';
   }
 
   if (countryInfo.length === 0) {
-    listRef.innerHTML = '';
-    errorTextRef.textContent = `Countri ${value} not found!`;
+    errorTextRef.textContent = `Countri ${inputValue} not found!`;
   }
 };
-
-const debouncedHandleInput = _.debounce(handleInput, 1000);
-searchInputRef.addEventListener('input', debouncedHandleInput);
 
 const createCountryList = counrtiesList => {
   return counrtiesList.map(({ name, capital }) => {
@@ -87,3 +78,6 @@ const createCountryCard = ({ name, capital, area, population }) => {
   <p>area: ${area}</p>
   </li>`;
 };
+
+const debouncedInput = _.debounce(handleInput, 1000);
+searchInputRef.addEventListener('input', debouncedInput);
