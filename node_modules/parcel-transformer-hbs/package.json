@@ -1,0 +1,22 @@
+{
+  "name": "parcel-transformer-hbs",
+  "version": "1.0.4",
+  "description": "transforms hbs files to template functions",
+  "main": "index.js",
+  "author": "Vadim Luzyanin",
+  "license": "ISC",
+  "engines": {
+    "parcel": "2.x"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "parcel": "^2.0.1"
+  },
+  "keywords": [
+    "parcel",
+    "hbs",
+    "handlebars",
+    "parcel handlebars plugin",
+    "parcel handlebars transform"
+  ]
+}
