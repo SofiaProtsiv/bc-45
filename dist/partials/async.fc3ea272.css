@@ -1,0 +1,63 @@
+*, :before, :after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.popup {
+  width: 450px;
+  text-align: center;
+  background-color: #e4e4e4;
+  border-radius: 20px;
+  padding: 30px 40px;
+  font-family: Poppins, sans-serif;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.popup button {
+  color: #000;
+  cursor: pointer;
+  background-color: #0000;
+  border: none;
+  outline: none;
+  margin: 0 0 20px auto;
+  font-size: 30px;
+  display: block;
+}
+
+.popup p {
+  text-align: justify;
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+a {
+  width: 150px;
+  text-align: center;
+  color: #fff;
+  opacity: 1;
+  background-color: #3535ff;
+  border-radius: 15px;
+  margin: 10px auto;
+  padding: 10px 0;
+  text-decoration: none;
+  transition: opacity .3s;
+  display: block;
+  position: relative;
+}
+
+a:hover {
+  opacity: .8;
+}
+
+/*# sourceMappingURL=async.fc3ea272.css.map */
