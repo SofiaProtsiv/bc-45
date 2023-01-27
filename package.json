@@ -17,6 +17,7 @@
     "url": "https://github.com/SofiaProtsiv/bc-45/issues"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.4",
     "hbs": "^4.2.0",
     "lodash.debounce": "^4.0.8",
     "modern-normalize": "^1.1.0",
