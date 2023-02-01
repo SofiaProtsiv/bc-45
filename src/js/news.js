@@ -1,43 +1,38 @@
-import { fetchNewsByKeyword, fetchNewsBySort, fetchNewsByPageSize } from './news-api';
-import { createNewsMarkup } from './createNewsMarkup'
+import { fetchNewsByKeyword, fetchNewsBySort, fetchNewsByPageSize, fetchNewsByCountry } from './news-api';
+
+import { createNewsCardMarkup } from '../templates/createNewsCardMarkup';
+import { createNewsCardInProgress } from '../templates/createNewsCardInProgress';
 
 const inputField = document.querySelector('.search-bar');
 const searchBtn = document.querySelector('#search_btn');
-const content = document.querySelector('.content');
-const sortBySelect = document.querySelector("#sortBy")
-const pageSizeSelect = document.querySelector("#pageSize")
+const content = document.querySelector('.news-container');
 
-let query = ""
+const state = {
+    query: "", pageSize: 10, sortBy: "publishedAt", page: 1, status: "pending"
+}
+
+if (state.status === "pending") {
+    for (let i = 0; i < 10; i++) {
+        content.insertAdjacentHTML("beforeend", createNewsCardInProgress())
+
+    }
+}
+fetchNewsByCountry(state).then(({ articles }) => {
+    setTimeout(() => {
+        state.status = "fulfilled"
+        const markup = articles.map(article => createNewsCardMarkup(article)).join("")
+        content.innerHTML = markup
+    }, 1000);
+})
 
 function handleInput() {
-    query = inputField.value.trim()
-    if (query === "") {
+    state.query = inputField.value.trim()
+    if (state.query === "") {
         return
     }
-    fetchNewsByKeyword(query).then(({ articles }) => {
-        content.innerHTML = createNewsMarkup(articles)
-    })
-}
-
-function handleSelect() {
-    const sortBy = sortBySelect.value
-
-    fetchNewsBySort(query, sortBy).then(({ articles }) => {
-        content.innerHTML = ""
-        setTimeout(() => {
-            content.innerHTML = createNewsMarkup(articles)
-        }, 1000);
-    })
-}
-
-function handlePageSelect() {
-    const pageSize = pageSizeSelect.value;
-
-    fetchNewsByPageSize(query, pageSize).then(({ articles }) => {
-        content.innerHTML = ""
-        setTimeout(() => {
-            content.innerHTML = createNewsMarkup(articles)
-        }, 1000);
+    fetchNewsByKeyword(state).then(({ articles }) => {
+        const markup = articles.map(article => createNewsCardMarkup(article)).join("")
+        content.innerHTML = markup
     })
 }
 
@@ -48,7 +43,3 @@ inputField.addEventListener('keyup', e => {
         handleInput()
     }
 });
-
-sortBySelect.addEventListener("change", handleSelect)
-
-pageSizeSelect.addEventListener("change", handlePageSelect)
