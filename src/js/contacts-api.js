@@ -6,16 +6,16 @@ const BASE_URL = 'https://62d459315112e98e484e5213.mockapi.io';
 // GET -> /contacts
 
 export const getContacts = async () => {
-    //variant 1
-    const { data } = await axios.get('/contcts')
-    return data;
+    // variant 1
+    // const { data } = await axios.get('/contcts')
+    // return data;
 
     // variant 2
     // const data = await fetch(`${BASE_URL}/contacts`)
     // return await data.json();
 
     // variant 3
-    // return fetch(`${BASE_URL}/contacts`).then(response => response.json());
+    return fetch(`${BASE_URL}/contacts`).then(response => response.json());
 };
 
 // GET -> /contacts/:id
